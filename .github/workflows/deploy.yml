@@ -1,4 +1,4 @@
-name: Deploy documentation
+name: Deploy stuff
 
 on:
   push:
@@ -10,6 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+
+      - name: Install MkDocs
+        run: |
+          pip install mkdocs
+
       - name: Deploy MkDocs
-        run: mkdocs gh-deploy
-       
+        run: |
+          mkdocs gh-deploy
+ 
