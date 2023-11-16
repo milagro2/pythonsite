@@ -3,5 +3,6 @@ site_name: My first Phyton website
 nav:
   - Home: index.md
   - Test: test.html
+  - Goals: goals.md
 
 theme: readthedocs
