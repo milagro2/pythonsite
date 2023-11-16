@@ -1,0 +1,12 @@
+name: Update documentation
+on:
+  push:
+    branches:
+      - master
+jobs:
+  update_docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test Workflow
+        run: echo Hello World
