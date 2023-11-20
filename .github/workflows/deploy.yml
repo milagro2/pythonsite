@@ -20,6 +20,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install jinja==2.11.3 # Replace with a version compatible with MkDocs
 
       - name: Deploy MkDocs
         run: mkdocs gh-deploy
