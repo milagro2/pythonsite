@@ -2,7 +2,7 @@ site_name: My first Phyton website
 #site_url: https://milastam.com/
 nav:
   - Home: index.md
-  - Test: Agile.html
+  - Agile: Agile.html
   - Goals: goals.md
 
 theme: material
