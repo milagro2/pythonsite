@@ -13,10 +13,8 @@ jobs:
 
 
       - name: Install MkDocs
-        run: |
-          pip install mkdocs
+        run: pip install mkdocs
 
       - name: Deploy MkDocs
-        run: |
-          mkdocs gh-deploy
+        run: mkdocs gh-deploy
  
