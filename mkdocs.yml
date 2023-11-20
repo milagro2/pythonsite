@@ -5,4 +5,4 @@ nav:
   - Test: test.html
   - Goals: goals.md
 
-theme: readthedocs
+theme: material
