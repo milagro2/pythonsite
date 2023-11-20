@@ -4,5 +4,6 @@ nav:
   - Home: index.md
   - Agile: Agile.html
   - Goals: goals.md
+  - Project: projects.md
 
 theme: material
