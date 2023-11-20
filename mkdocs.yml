@@ -2,7 +2,7 @@ site_name: My first Phyton website
 #site_url: https://milastam.com/
 nav:
   - Home: index.md
-  - Agile: Agile.html
+  - Agile: https://milagro2.github.io./Agile.html
   - Goals: goals.md
   - Project: projects.md
 
