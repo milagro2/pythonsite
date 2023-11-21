@@ -4,7 +4,7 @@ import sys
 folder_path = "TestFiles"
 file_list = os.listdir(folder_path)
 
-bad_files = []
+bad_files = set[]
 
 for file_name in file_list:
     file_path = os.path.join(folder_path, file_name)
@@ -15,7 +15,7 @@ for file_name in file_list:
             bad_files.append(file_path)
             
 if bad_files:
-    print("Filenames without 'BusinessRule_ba_' prefix:")
+    print("Filenames without 'BusinessRule_ba_':")
     for bad_file in bad_files:
         print(bad_file)
     sys.exit(1) 
