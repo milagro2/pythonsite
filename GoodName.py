@@ -22,7 +22,7 @@ if bad_files:
     print("\nThese are bad:")
     for bad_file in bad_files:
         print(bad_file)
-    print("\nError: We found files that violate the naming convention'")
+    print("\nError: We found files that violate the naming convention")
     sys.exit(1)
 
 else:
