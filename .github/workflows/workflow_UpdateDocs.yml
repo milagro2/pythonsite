@@ -2,7 +2,7 @@ name: Update documentation
 on:
   push:
     branches:
-      - STEP Configuration Linter
+      - STEP-Configuration-Linter
 jobs:
   update_docs:
     runs-on: ubuntu-latest
