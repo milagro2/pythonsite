@@ -17,6 +17,7 @@ for file_name in file_list:
         else:
             bad_files.append(file_path)
 
+# Print the results
 if good_files:
     print("These are correct:")
     for good_file in good_files:
@@ -28,7 +29,12 @@ if bad_files:
     print("\nThese are bad:")
     for bad_file in bad_files:
         print(bad_file)
-    print("\nError: We found files that violate the naming convention'")
-    sys.exit("We found files that violate the naming convention")
+    print("\nThe filename should start with 'BusinessRule_ba_'")
+    
+    # Custom error message
+    try:
+        sys.exit("We found files that violate the naming convention")
+    except SystemExit as e:
+        print(f"Error: {e}")
 else:
     print("\nAll filenames are correct.")
