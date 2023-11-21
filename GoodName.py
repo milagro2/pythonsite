@@ -12,3 +12,4 @@ for file_name in file_list:
             print(f"Good filename: {file_path}")
         else:
             print(f"Bad filename: {file_path}")
+            sys.exit(1)
