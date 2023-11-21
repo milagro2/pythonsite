@@ -29,6 +29,8 @@ if bad_files:
     for bad_file in bad_files:
         print(bad_file)
     print("\nError: We found files that violate the naming convention'")
-    sys.exit(0)
+    sys.exit(1)
+    sys.exit(1)
+    sys.exit(1)
 else:
     print("\nAll filenames are correct.")
