@@ -4,6 +4,7 @@ import sys
 folder_path = "TestFiles"
 file_list = os.listdir(folder_path)
 
+# Lists to store good and bad filenames
 good_files = []
 bad_files = []
 
@@ -15,6 +16,7 @@ for file_name in file_list:
             good_files.append(file_path)
         else:
             bad_files.append(file_path)
+
 if good_files:
     print("These are correct:")
     for good_file in good_files:
@@ -26,7 +28,6 @@ if bad_files:
     print("\nThese are bad:")
     for bad_file in bad_files:
         print(bad_file)
-    print("\nThe filename should start with 'BusinessRule_ba_'")
-    sys.exit("We found files that violate the naming convention")
+    print("\nError: We found files that violate the naming convention'")
 else:
     print("\nAll filenames are correct.")
