@@ -25,4 +25,3 @@ jobs:
 
     - name: Run Python script
       run: python GoodName.py
- 
