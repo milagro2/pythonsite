@@ -9,8 +9,6 @@ for file_name in file_list:
     if os.path.isfile(file_path):
 
         if file_name.startswith('BusinessRule_ba_'):
-            print(f"Processing file: {file_path}")
-            print("Hello")
+            print(f"Good filename: {file_path}")
         else:
-            print(f"Bad file: {file_path}")
-            print("Bad")
+            print(f"Bad filename: {file_path}")
