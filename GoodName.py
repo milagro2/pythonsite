@@ -4,7 +4,7 @@ import sys
 folder_path = "TestFiles"
 file_list = os.listdir(folder_path)
 
-bad_files = set[]
+bad_files = set()
 
 for file_name in file_list:
     file_path = os.path.join(folder_path, file_name)
