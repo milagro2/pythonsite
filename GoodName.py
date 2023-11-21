@@ -15,3 +15,4 @@ for file_name in file_list:
             print(f"Bad filename: {file_path}")
             print("The filename should start with 'BusinessRule_ba_'")
             sys.exit(1)
+            
