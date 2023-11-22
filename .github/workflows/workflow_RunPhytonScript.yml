@@ -3,7 +3,7 @@ name: Run Python Script
 on:
   push:
     branches:
-      - master
+      - STEP-Configuration-Linter
 
 jobs:
   run-python-script:
