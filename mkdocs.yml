@@ -3,7 +3,7 @@ site_name: My first Phyton website
 nav:
   - Home: index.md
   - Agile: https://milagro2.github.io./Agile.html
-  - Projects: project.md
+  - Projects: projects.md
     - Project 1: project1.md
     - Project 2: project2.md
     
