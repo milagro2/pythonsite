@@ -4,7 +4,9 @@ nav:
   - Home: index.md
   - Agile: https://milagro2.github.io./Agile.html
   - Projects:
-      - Project 1: project1.md
-      - Project 2: project2.md
+      - Project 1 - Github / First Open Source Contribution: project1.md
+      - Project 2 - Python site with MkDocs: project2.md
+      - Project 3 - File name convention checker: project3.md
+      - Project 4 - Variable name convention checker: project4.md
 
 theme: material
