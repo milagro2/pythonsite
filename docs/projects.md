@@ -1,1 +1,1 @@
-Here is a little bit about the process I followed.
+You can find the projects I have worked on in the sub-section
