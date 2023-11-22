@@ -1,9 +1,7 @@
 name: Run Python Script
 
 on:
-  push:
-    branches:
-      - STEP-Configuration-Linter
+  workflow_dispatch:
 
 jobs:
   run-python-script:
