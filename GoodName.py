@@ -2,7 +2,7 @@ import os
 import sys
 folder_path = "TestFiles"
 file_list = os.listdir(folder_path)
-# Lists to store good and bad filenames
+
 good_files = []
 bad_files = []
 for file_name in file_list:
