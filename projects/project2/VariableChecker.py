@@ -1,5 +1,4 @@
 import os
-import sys
 import json
 import re
 
@@ -37,32 +36,14 @@ def parse_file_content(content):
 folder_path = "TestFiles"
 file_list = os.listdir(folder_path)
 
-good_files = []
-bad_files = []
 for file_name in file_list:
     file_path = os.path.join(folder_path, file_name)
-    if os.path.isfile(file_path) and file_name.startswith('BusinessRule_ba_'):
-        good_files.append(file_path)
-
-if good_files:
-    print("These are correct:")
-    for good_file in good_files:
-        with open(good_file, 'r') as file:
+    if os.path.isfile(file_path):
+        with open(file_path, 'r') as file:
             content = file.read()
             blocks = parse_file_content(content)
             for block in blocks:
-                print(f"File: {good_file}, Block Name: {block.name}")
+                print(f"File: {file_path}, Block Name: {block.name}")
                 print("Block Value:")
                 print(json.dumps(block.value, indent=2))
                 print("\n")
-else:
-    print("No correct filenames found.")
-
-if bad_files:
-    print("\nThese are bad:")
-    for bad_file in bad_files:
-        print(bad_file)
-    print("\nError: We found files that violate the naming convention")
-    sys.exit(1)
-else:
-    print("\nAll filenames are correct.")
