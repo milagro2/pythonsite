@@ -1,4 +1,3 @@
-import os
 import json
 
 class JSONBlock:
@@ -6,49 +5,27 @@ class JSONBlock:
         self.name = name
         self.value = value
 
-def parse_json_blocks(content):
-    json_blocks = []
-    current_block = None
+def get_json_blocks(filepath):
+    json_blocks_array = []
 
-    for line in content.splitlines():
-        if line.strip().startswith("/*===== ") and line.strip().endswith(" =====*/"):
-            # New JSON block
-            if current_block is not None:
-                json_blocks.append(current_block)
+    try:
+        with open(filepath, 'r') as file:
+            content = file.read()
+            # Split content by '{' to find potential JSON blocks
+            json_parts = content.split('{')
+            
+            for part in json_parts[1:]:
+                # Check if the part starts with 'business rule plugin definition'
+                if 'business rule plugin definition' in part.lower():
+                    json_block_str = '{' + part
+                    try:
+                        json_block = json.loads(json_block_str)
+                        json_blocks_array.append(JSONBlock('business rule plugin definition', json_block))
+                    except json.JSONDecodeError:
+                        print(f"Error decoding JSON in file: {filepath}")
+                # Add more conditions for other block names if needed
+                
+    except FileNotFoundError:
+        print(f"File not found: {filepath}")
 
-            name = line.strip()[8:-9]
-            current_block = JSONBlock(name, {})
-        elif current_block is not None:
-            try:
-                data = json.loads(line)
-                current_block.value.update(data)
-            except json.JSONDecodeError:
-                pass  # Ignore lines that are not valid JSON
-
-    if current_block is not None:
-        json_blocks.append(current_block)
-
-    return json_blocks
-
-def get_json_blocks(file_path):
-    with open(file_path, 'r') as file:
-        content = file.read()
-    return parse_json_blocks(content)
-
-folder_path = os.path.join(os.path.dirname(__file__), "TestFiles")
-file_list = os.listdir(folder_path)
-
-json_blocks_array = []
-
-for file_name in file_list:
-    file_path = os.path.join(folder_path, file_name)
-    if os.path.isfile(file_path):
-        blocks = get_json_blocks(file_path)
-        json_blocks_array.extend(blocks)
-
-        # Print for debugging
-        print(f"File: {file_path}")
-        for block in blocks:
-            print("Name:", block.name)
-            print("Value:", block.value)
-            print()
+    return json_blocks_array
