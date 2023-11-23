@@ -1,3 +1,4 @@
+import os
 import re
 import json
 
@@ -22,8 +23,31 @@ def extract_json_objects(file_path):
 
     return extracted_objects
 
-file_path = 'projects/project2/TestFiles/BusinessRule_ba_InitiateInUpdateWFTIMS.js'
-result = extract_json_objects(file_path)
+def check_for_alias(file_path):
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+        alias_lines = [line.strip() for line in lines if 'alias' in line]
+        return alias_lines
 
-for label, json_object in result.items():
-    print(f"\n{label}:\n{json.dumps(json_object, indent=2)}")
+def process_files(folder_path):
+    file_list = os.listdir(folder_path)
+
+    for file_name in file_list:
+        file_path = os.path.join(folder_path, file_name)
+
+        if os.path.isfile(file_path):
+            alias_lines = check_for_alias(file_path)
+            if alias_lines:
+                print(f"\nLines with 'alias' in {file_name}:")
+                for alias_line in alias_lines:
+                    print(alias_line)
+
+                extracted_objects = extract_json_objects(file_path)
+
+                for label, json_object in extracted_objects.items():
+                    print(f"\n{label}:\n{json.dumps(json_object, indent=2)}")
+
+folder_path = "projects/project2/TestFiles"
+process_files(folder_path)
+
+print("\nCheck complete.")
