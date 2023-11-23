@@ -1,44 +1,40 @@
-print("WHY DOESNT IT WORK?????????????")
+import os
+import sys
 
-import re
-import json
+folder_path = "TestFiles"
+file_list = os.listdir(folder_path)
 
-class JSONBlock:
-    def __init__(self, name, value):
-        self.name = name
-        self.value = value
+good_files = []
+bad_files = []
 
-    @classmethod
-    def from_string(cls, string):
-        try:
-            json_data = json.loads(string)
-            return cls(name="", value=json_data)
-        except json.JSONDecodeError:
-            # Handle the case where the block is not valid JSON
-            return None
+for file_name in file_list:
+    file_path = os.path.join(folder_path, file_name)
 
-def get_json_blocks(filepath):
-    with open(filepath, 'r', encoding='utf-8') as file:
-        content = file.read()
+    if os.path.isfile(file_path):
+        if file_name.startswith('BusinessRule_ba_'):
+            good_files.append(file_path)
+            with open(file_path, 'r') as file:
+                lines = file.readlines()
+                alias_lines = [line.strip() for line in lines if 'alias' in line]
+                if alias_lines:
+                    print(f"\nLines with 'alias' in {file_name}:")
+                    for alias_line in alias_lines:
+                        print(alias_line)
+        else:
+            bad_files.append(file_path)
 
-    # Use a regular expression to find JSON blocks within comment delimiters
-    json_blocks = re.findall(r'/\*={4}\s*([\s\S]*?)\*/', content)
+if good_files:
+    print("\nThese are correct:")
+    for good_file in good_files:
+        print(good_file)
+else:
+    print("No correct filenames found.")
 
-    # Create JSONBlock objects from the matched blocks
-    blocks = []
-    for block in json_blocks:
-        json_block = JSONBlock.from_string(block)
-        if json_block:
-            blocks.append(json_block)
-
-    return blocks
-
-if __name__ == "__main__":
-    filepath = "projects/project2/TestFiles/BusinessRule_ba_InitiateInUpdateWFTIMS.js"
-    json_blocks = get_json_blocks(filepath)
-
-    # Log JSON blocks
-    for index, block in enumerate(json_blocks):
-        print(f"JSON Block {index + 1}:")
-        print(f"Value: {block.value}")
-        print("WHY DOESNT IT WORK?????????????")
+if bad_files:
+    print("\nThese are bad:")
+    for bad_file in bad_files:
+        print(bad_file)
+    print("\nError: We found files that violate the naming convention")
+    sys.exit(1)
+else:
+    print("\nAll filenames are correct.")
