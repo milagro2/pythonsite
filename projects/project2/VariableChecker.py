@@ -18,8 +18,7 @@ def read_json_objects_from_file(file_path):
         print(f"An error occurred: {e}")
         return None
 
-# Example usage:
-file_path = 'projects/project2/TestFiles/'
+file_path = 'projects/project2/TestFiles/BusinessRule_ba_InitiateInUpdateWFTIMS.js'
 result = read_json_objects_from_file(file_path)
 
 if result is not None:
