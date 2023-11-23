@@ -1,36 +1,59 @@
-import os
 import json
 
-def read_json_from_folder(folder_path):
-    json_objects = []
+class JSONBlock:
+    def __init__(self, name, value):
+        self.name = name
+        self.value = value
 
-    for filename in os.listdir(folder_path):
-        file_path = os.path.join(folder_path, filename)
+    @classmethod
+    def from_string(cls, json_str):
+        try:
+            json_obj = json.loads(json_str)
+            name = cls.get_block_name(json_obj)
+            return cls(name, json_obj)
+        except json.JSONDecodeError as e:
+            print(f"Error decoding JSON: {e}")
+            return None
 
-        # Check if it's a file
-        if os.path.isfile(file_path):
-            with open(file_path, 'r') as file:
-                file_content = file.read()
+    @staticmethod
+    def get_block_name(json_obj):
+        if "businessRule" in json_obj:
+            return "business_rule"
+        elif "exportMetadata" in json_obj:
+            return "export_metadata"
+        elif "businessRuleDefinition" in json_obj:
+            return "business_rule_definition"
+        else:
+            return "unknown"
 
-                while True:
-                    json_start = file_content.find('{')
-                    json_end = file_content.find('}')
+def get_json_blocks(filepath):
+    json_blocks = []
 
-                    if json_start != -1 and json_end != -1:
-                        json_str = file_content[json_start:json_end + 1]
+    with open(filepath, 'r') as file:
+        file_content = file.read()
 
-                        try:
-                            json_object = json.loads(json_str)
-                            json_objects.append(json_object)
-                        except json.JSONDecodeError as e:
-                            print(f"Error decoding JSON in {filename}: {e}")
+        while True:
+            json_start = file_content.find('{')
+            json_end = file_content.find('}')
 
-                        file_content = file_content[json_end + 1:]
-                    else:
-                        break
+            if json_start != -1 and json_end != -1:
+                json_str = file_content[json_start:json_end + 1]
 
-    return json_objects
+                json_block = JSONBlock.from_string(json_str)
 
-folder_path = 'projects/project2/TestFiles'
-result = read_json_from_folder(folder_path)
-print(result)
+                if json_block:
+                    json_blocks.append(json_block)
+
+                file_content = file_content[json_end + 1:]
+            else:
+                break
+
+    return json_blocks
+
+filepath = 'projects/project2/TestFiles'
+result = get_json_blocks(filepath)
+
+for json_block in result:
+    print(f"Name: {json_block.name}")
+    print(f"Value: {json_block.value}")
+    print()
