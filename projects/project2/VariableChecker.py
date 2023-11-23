@@ -43,10 +43,12 @@ json_blocks_array = []
 for file_name in file_list:
     file_path = os.path.join(folder_path, file_name)
     if os.path.isfile(file_path):
-        json_blocks_array.extend(get_json_blocks(file_path))
+        blocks = get_json_blocks(file_path)
+        json_blocks_array.extend(blocks)
 
-# Now json_blocks_array contains an array of JSONBlock objects
-for block in json_blocks_array:
-    print("Name:", block.name)
-    print("Value:", block.value)
-    print()
+        # Print for debugging
+        print(f"File: {file_path}")
+        for block in blocks:
+            print("Name:", block.name)
+            print("Value:", block.value)
+            print()
