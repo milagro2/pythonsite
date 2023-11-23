@@ -50,7 +50,7 @@ def get_json_blocks(filepath):
 
     return json_blocks
 
-filepath = 'projects/project2/TestFiles'
+filepath = 'projects/project2/TestFiles/BusinessRule_ba_InitiateInUpdateWFTIMS.js'
 result = get_json_blocks(filepath)
 
 for json_block in result:
