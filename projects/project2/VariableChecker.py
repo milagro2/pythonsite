@@ -2,15 +2,14 @@ import re
 import json
 
 class JSONBlock:
-    def __init__(self, name, value):
-        self.name = name
+    def __init__(self, value):
         self.value = value
 
     @classmethod
     def from_string(cls, string):
         try:
             json_data = json.loads(string)
-            return cls(name=None, value=json_data)
+            return cls(value=json_data)
         except json.JSONDecodeError:
             # Handle the case where the block is not valid JSON
             return None
@@ -19,8 +18,8 @@ def get_json_blocks(filepath):
     with open(filepath, 'r', encoding='utf-8') as file:
         content = file.read()
 
-    # Use a regular expression to find JSON blocks
-    json_blocks = re.findall(r'/\*=====([\s\S]*?)\*/', content)
+    # Use a regular expression to find JSON blocks within comment delimiters
+    json_blocks = re.findall(r'/\*={4}\s*([\s\S]*?)\*/', content)
 
     # Create JSONBlock objects from the matched blocks
     blocks = []
@@ -38,6 +37,5 @@ if __name__ == "__main__":
     # Log JSON blocks
     for index, block in enumerate(json_blocks):
         print(f"JSON Block {index + 1}:")
-        print(f"Name: {block.name}")
         print(f"Value: {block.value}")
         print("\n")
