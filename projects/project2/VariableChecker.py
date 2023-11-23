@@ -39,4 +39,4 @@ if __name__ == "__main__":
     for index, block in enumerate(json_blocks):
         print(f"JSON Block {index + 1}:")
         print(f"Value: {block.value}")
-        print("\n")
+        print("WHY DOESNT IT WORK?????????????")
