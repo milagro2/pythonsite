@@ -1,26 +1,41 @@
 import json
+import re
 
-def read_json_objects_from_file(file_path):
-    try:
-        with open(file_path, 'r') as file:
-            content = file.read()
+class JSONBlock:
+    def __init__(self, name, value):
+        self.name = name
+        self.value = value
 
-        # Parse JSON-formatted content into a list of dictionaries
-        json_objects = json.loads(content)
-        return json_objects
-    except json.JSONDecodeError as e:
-        print(f"Error decoding JSON: {e}")
-        return None
-    except FileNotFoundError:
-        print(f"File not found: {file_path}")
-        return None
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return None
+    @classmethod
+    def from_string(cls, block_string):
+        try:
+            block_dict = json.loads(block_string)
+            name = block_dict.get('name', '')
+            value = block_dict
+            return cls(name, value)
+        except json.JSONDecodeError:
+            return None
 
-file_path = 'projects/project2/TestFiles/BusinessRule_ba_InitiateInUpdateWFTIMS.js'
-result = read_json_objects_from_file(file_path)
+def get_json_blocks(filepath):
+    json_blocks = []
+    with open(filepath, 'r') as file:
+        content = file.read()
 
-if result is not None:
-    for obj in result:
-        print(obj)
+        known_block_names = ["export metadata", "business rule plugin definition", "business rule definition"]
+
+        json_objects = re.findall(r'\{.*?\}', content)
+
+        for obj_string in json_objects:
+            json_block = JSONBlock.from_string(obj_string)
+            if json_block and json_block.name.lower() in known_block_names:
+                json_blocks.append(json_block)
+
+    return json_blocks
+
+file_path = 'projects/project2/TestFiles/BusinessRule_ba_InitiateInUpdateWFTIMS.js' 
+blocks = get_json_blocks(file_path)
+
+for block in blocks:
+    print(f"Name: {block.name}")
+    print("Value:", json.dumps(block.value, indent=2))
+    print()
