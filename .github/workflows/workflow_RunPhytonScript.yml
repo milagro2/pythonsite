@@ -23,5 +23,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run Python script
-      run: python projects/project2/VariTest.py
+    - name: Run VariableChecker.py
+      run: python projects/project2/VariableChecker.py
+
+    - name: Run WordFinder.py
+      run: python projects/project2/WordFinder.py
