@@ -30,23 +30,21 @@ def get_json_blocks(filepath):
     json_blocks = []
 
     with open(filepath, 'r') as file:
-        file_content = file.read()
+        for line in file:
+            json_start = line.find('{')
+            json_end = line.find('}')
 
-        while True:
-            json_start = file_content.find('{')
-            json_end = file_content.find('}')
-
-            if json_start != -1 and json_end != -1:
-                json_str = file_content[json_start:json_end + 1]
+            while json_start != -1 and json_end != -1:
+                json_str = line[json_start:json_end + 1]
 
                 json_block = JSONBlock.from_string(json_str)
 
                 if json_block:
                     json_blocks.append(json_block)
 
-                file_content = file_content[json_end + 1:]
-            else:
-                break
+                line = line[json_end + 1:]
+                json_start = line.find('{')
+                json_end = line.find('}')
 
     return json_blocks
 
@@ -55,5 +53,5 @@ result = get_json_blocks(filepath)
 
 for json_block in result:
     print(f"Name: {json_block.name}")
-    print(f"Value: {json_block.value}")
+    print(f"Value: {json.dumps(json_block.value, indent=2)}")
     print()
