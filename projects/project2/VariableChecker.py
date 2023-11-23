@@ -1,49 +1,52 @@
 import os
 import json
-import re
 
 class JSONBlock:
     def __init__(self, name, value):
         self.name = name
         self.value = value
 
-def parse_file_content(content):
+def parse_json_blocks(content):
     json_blocks = []
     current_block = None
 
     for line in content.splitlines():
-        # Check if the line contains the start of a JSON block
-        match = re.match(r'\s*\/\*===== (\w+) =====', line)
-        if match:
-            block_name = match.group(1)
-            current_block = JSONBlock(name=block_name, value={})
+        if line.strip().startswith("/*===== ") and line.strip().endswith(" =====*/"):
+            # New JSON block
+            if current_block is not None:
+                json_blocks.append(current_block)
 
-        # Check if the line contains JSON data
-        elif current_block and line.strip() and line.strip() != '*/':
+            name = line.strip()[8:-9]
+            current_block = JSONBlock(name, {})
+        elif current_block is not None:
             try:
-                json_data = json.loads(line)
-                current_block.value = json_data
+                data = json.loads(line)
+                current_block.value.update(data)
             except json.JSONDecodeError:
-                print(f"Error decoding JSON in block {current_block.name}")
+                pass  # Ignore lines that are not valid JSON
 
-        # Check if the line contains the end of a JSON block
-        elif current_block and line.strip() == '*/':
-            json_blocks.append(current_block)
-            current_block = None
+    if current_block is not None:
+        json_blocks.append(current_block)
 
     return json_blocks
+
+def get_json_blocks(file_path):
+    with open(file_path, 'r') as file:
+        content = file.read()
+    return parse_json_blocks(content)
 
 folder_path = os.path.join(os.path.dirname(__file__), "TestFiles")
 file_list = os.listdir(folder_path)
 
+json_blocks_array = []
+
 for file_name in file_list:
     file_path = os.path.join(folder_path, file_name)
     if os.path.isfile(file_path):
-        with open(file_path, 'r') as file:
-            content = file.read()
-            blocks = parse_file_content(content)
-            for block in blocks:
-                print(f"File: {file_path}, Block Name: {block.name}")
-                print("Block Value:")
-                print(json.dumps(block.value, indent=2))
-                print("\n")
+        json_blocks_array.extend(get_json_blocks(file_path))
+
+# Now json_blocks_array contains an array of JSONBlock objects
+for block in json_blocks_array:
+    print("Name:", block.name)
+    print("Value:", block.value)
+    print()
