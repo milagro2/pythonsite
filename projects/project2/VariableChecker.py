@@ -14,6 +14,7 @@ class JSONBlock:
             value = block_dict
             return cls(name, value)
         except json.JSONDecodeError:
+            # Handle JSON parsing error
             return None
 
 def get_json_blocks(filepath):
@@ -21,14 +22,20 @@ def get_json_blocks(filepath):
     with open(filepath, 'r') as file:
         content = file.read()
 
+        # Define known block names
         known_block_names = ["export metadata", "business rule plugin definition", "business rule definition"]
 
-        json_objects = re.findall(r'\{.*?\}', content)
+        # Find JSON blocks within comments
+        json_objects = re.findall(r'/\*.*?\*/', content, flags=re.DOTALL)
 
+        # Parse JSON blocks
         for obj_string in json_objects:
-            json_block = JSONBlock.from_string(obj_string)
-            if json_block and json_block.name.lower() in known_block_names:
-                json_blocks.append(json_block)
+            # Extract the content within the comment delimiters
+            json_block_content = re.search(r'{.*?}', obj_string, flags=re.DOTALL)
+            if json_block_content:
+                json_block = JSONBlock.from_string(json_block_content.group())
+                if json_block and json_block.name.lower() in known_block_names:
+                    json_blocks.append(json_block)
 
     return json_blocks
 
