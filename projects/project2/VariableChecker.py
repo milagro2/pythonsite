@@ -1,38 +1,30 @@
 import os
+import json
 
+def read_json_from_folder(folder_path):
+    json_objects = []
 
-def get_json_blocks_from_folder(folder_path):
-    json_blocks = []
-
-    known_block_names = ["export metadata", "business rule definition", "business rule plugin definition"]
-
-    # Iterate through files in the folder
     for filename in os.listdir(folder_path):
-        filepath = os.path.join(folder_path, filename)
+        file_path = os.path.join(folder_path, filename)
 
-        if os.path.isfile(filepath):
-            # Read the file and extract JSON blocks
-            with open(filepath, 'r', encoding='utf-8') as file:
+        if os.path.isfile(file_path):
+            with open(file_path, 'r') as file:
                 file_content = file.read()
 
-                pattern = re.compile(r'/\*={5} (\w+) ={5}\n(.*?)\n\*/', re.DOTALL)
-                matches = pattern.findall(file_content)
+                json_start = file_content.find('{')
+                json_end = file_content.rfind('}') + 1
 
-                for match in matches:
-                    block_name, block_string = match
-                    if block_name.lower() in known_block_names:
-                        json_block = from_string(block_name, block_string)
-                        if json_block:
-                            json_blocks.append(json_block)
+                if json_start != -1 and json_end != -1:
+                    json_str = file_content[json_start:json_end]
 
-    return json_blocks
+                    try:
+                        json_object = json.loads(json_str)
+                        json_objects.append(json_object)
+                    except json.JSONDecodeError as e:
+                        print(f"Error decoding JSON in {filename}: {e}")
 
-# Example usage:
+    return json_objects
+
 folder_path = 'TestFiles'
-blocks = get_json_blocks_from_folder(folder_path)
-
-# Now 'blocks' contains a list of JSONBlock objects
-for block in blocks:
-    print(f"Block Name: {block.name}")
-    print("Block Value:", block.value)
-    print()
+result = read_json_from_folder(folder_path)
+print(result)
