@@ -2,14 +2,15 @@ import re
 import json
 
 class JSONBlock:
-    def __init__(self, value):
+    def __init__(self, name, value):
+        self.name = name
         self.value = value
 
     @classmethod
     def from_string(cls, string):
         try:
             json_data = json.loads(string)
-            return cls(value=json_data)
+            return cls(name="", value=json_data)
         except json.JSONDecodeError:
             # Handle the case where the block is not valid JSON
             return None
