@@ -32,8 +32,10 @@ def process_files(folder_path):
         if os.path.isfile(file_path):
             extracted_objects = extract_json_objects(file_path)
 
+            print(f"\n--------------- these are all the JSON objects from {file_name} ---------------")
+
             for label, json_object in extracted_objects.items():
-                print(f"\n{label} in {file_name}:\n{json.dumps(json_object, indent=2)}")
+                print(f"\n{label}:\n{json.dumps(json_object, indent=2)}")
 
 folder_path = "projects/project2/TestFiles"
 process_files(folder_path)
