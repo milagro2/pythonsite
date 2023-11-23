@@ -1,5 +1,5 @@
-import json
 import re
+import json
 
 class JSONBlock:
     def __init__(self, name, value):
@@ -7,42 +7,37 @@ class JSONBlock:
         self.value = value
 
     @classmethod
-    def from_string(cls, block_string):
+    def from_string(cls, string):
         try:
-            block_dict = json.loads(block_string)
-            name = block_dict.get('name', '')
-            value = block_dict
-            return cls(name, value)
+            json_data = json.loads(string)
+            return cls(name=None, value=json_data)
         except json.JSONDecodeError:
-            # Handle JSON parsing error
+            # Handle the case where the block is not valid JSON
             return None
 
 def get_json_blocks(filepath):
-    json_blocks = []
-    with open(filepath, 'r') as file:
+    with open(filepath, 'r', encoding='utf-8') as file:
         content = file.read()
 
-        # Define known block names
-        known_block_names = ["export metadata", "business rule plugin definition", "business rule definition"]
+    # Use a regular expression to find JSON blocks
+    json_blocks = re.findall(r'/\*=====([\s\S]*?)\*/', content)
 
-        # Find JSON blocks within comments
-        json_objects = re.findall(r'/\*.*?\*/', content, flags=re.DOTALL)
+    # Create JSONBlock objects from the matched blocks
+    blocks = []
+    for block in json_blocks:
+        json_block = JSONBlock.from_string(block)
+        if json_block:
+            blocks.append(json_block)
 
-        # Parse JSON blocks
-        for obj_string in json_objects:
-            # Extract the content within the comment delimiters
-            json_block_content = re.search(r'{.*?}', obj_string, flags=re.DOTALL)
-            if json_block_content:
-                json_block = JSONBlock.from_string(json_block_content.group())
-                if json_block and json_block.name.lower() in known_block_names:
-                    json_blocks.append(json_block)
+    return blocks
 
-    return json_blocks
+if __name__ == "__main__":
+    filepath = "projects/project2/TestFiles/BusinessRule_ba_InitiateInUpdateWFTIMS.js"
+    json_blocks = get_json_blocks(filepath)
 
-file_path = 'projects/project2/TestFiles/BusinessRule_ba_InitiateInUpdateWFTIMS.js' 
-blocks = get_json_blocks(file_path)
-
-for block in blocks:
-    print(f"Name: {block.name}")
-    print("Value:", json.dumps(block.value, indent=2))
-    print()
+    # Log JSON blocks
+    for index, block in enumerate(json_blocks):
+        print(f"JSON Block {index + 1}:")
+        print(f"Name: {block.name}")
+        print(f"Value: {block.value}")
+        print("\n")
