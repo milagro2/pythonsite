@@ -33,7 +33,7 @@ def parse_file_content(content):
 
     return json_blocks
 
-folder_path = "TestFiles"
+folder_path = os.path.join(os.path.dirname(__file__), "TestFiles")
 file_list = os.listdir(folder_path)
 
 for file_name in file_list:
