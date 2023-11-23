@@ -1,7 +1,9 @@
 name: Run Python Script
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - variable-defined
 
 jobs:
   run-python-script:
