@@ -22,5 +22,5 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run Python script
-      run: python project/project1/GoodName.py
+      run: python project/project2/VariableChecker.py
 
