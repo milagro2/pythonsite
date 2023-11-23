@@ -25,6 +25,6 @@ def read_json_from_folder(folder_path):
 
     return json_objects
 
-folder_path = 'TestFiles'
+folder_path = 'projects/project2/TestFiles'
 result = read_json_from_folder(folder_path)
 print(result)
