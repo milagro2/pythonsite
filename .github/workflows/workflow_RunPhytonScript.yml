@@ -24,4 +24,4 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run Python script
-      run: python projects/project2/VariableChecker.py
+      run: python projects/project2/VariTest.py
