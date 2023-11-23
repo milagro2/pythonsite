@@ -1,31 +1,38 @@
-import json
+import os
 
-class JSONBlock:
-    def __init__(self, name, value):
-        self.name = name
-        self.value = value
 
-def get_json_blocks(filepath):
-    json_blocks_array = []
+def get_json_blocks_from_folder(folder_path):
+    json_blocks = []
 
-    try:
-        with open(filepath, 'r') as file:
-            content = file.read()
-            # Split content by '{' to find potential JSON blocks
-            json_parts = content.split('{')
-            
-            for part in json_parts[1:]:
-                # Check if the part starts with 'business rule plugin definition'
-                if 'business rule plugin definition' in part.lower():
-                    json_block_str = '{' + part
-                    try:
-                        json_block = json.loads(json_block_str)
-                        json_blocks_array.append(JSONBlock('business rule plugin definition', json_block))
-                    except json.JSONDecodeError:
-                        print(f"Error decoding JSON in file: {filepath}")
-                # Add more conditions for other block names if needed
-                
-    except FileNotFoundError:
-        print(f"File not found: {filepath}")
+    known_block_names = ["export metadata", "business rule definition", "business rule plugin definition"]
 
-    return json_blocks_array
+    # Iterate through files in the folder
+    for filename in os.listdir(folder_path):
+        filepath = os.path.join(folder_path, filename)
+
+        if os.path.isfile(filepath):
+            # Read the file and extract JSON blocks
+            with open(filepath, 'r', encoding='utf-8') as file:
+                file_content = file.read()
+
+                pattern = re.compile(r'/\*={5} (\w+) ={5}\n(.*?)\n\*/', re.DOTALL)
+                matches = pattern.findall(file_content)
+
+                for match in matches:
+                    block_name, block_string = match
+                    if block_name.lower() in known_block_names:
+                        json_block = from_string(block_name, block_string)
+                        if json_block:
+                            json_blocks.append(json_block)
+
+    return json_blocks
+
+# Example usage:
+folder_path = 'TestFiles'
+blocks = get_json_blocks_from_folder(folder_path)
+
+# Now 'blocks' contains a list of JSONBlock objects
+for block in blocks:
+    print(f"Block Name: {block.name}")
+    print("Block Value:", block.value)
+    print()
