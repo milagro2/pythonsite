@@ -1,9 +1,0 @@
-.image-hover:hover {
-    transition: transform 0.5s;
-    transform: scale(1.2);
-}
-
-body {
-    background-color: #191919;
-    color: #ffffffba;
-}
