@@ -1,7 +1,9 @@
 name: Run Python Script
 
 on:
-  workflow_dispatch:
+   push:
+    branches:
+      - master
 
 jobs:
   run-python-script:
@@ -21,6 +23,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run Python script
+    - name: Run Name checker script
       run: python project/project1/GoodName.py
-
+      
