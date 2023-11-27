@@ -6,7 +6,7 @@ In project 3, I wrote a Python script that reads all the filenames and checks if
 
 | NameCheckCode | FilenamesSorted |
 | -------------- | --------------- |
-| ![NameCheckCode](images/NameCheckCode.png) | ![FilenamesSorted](images/FilenamesSorted.png) |
+| ![Filename checker](img/NameCheckCode.png) | ![Filenames Sorter](img/FilenamesSorted.png) |
 
 The table above displays the images side by side.
 
