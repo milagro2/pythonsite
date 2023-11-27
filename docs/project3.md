@@ -12,7 +12,7 @@ In project 3, I wrote a Python script that reads all the filenames and checks if
 
 <summary>The code to check the filename:</summary>
 
-```ruby
+```python
 import os
 import sys
 
