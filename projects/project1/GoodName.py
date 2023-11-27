@@ -1,6 +1,7 @@
 import os
 import sys
-folder_path = "TestFiles"
+
+folder_path = "projects/project1/TestFiles"
 file_list = os.listdir(folder_path)
 
 good_files = []
