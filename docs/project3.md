@@ -4,9 +4,9 @@ In project 3, I wrote a Python script that reads all the filenames and checks if
 
 <br>
 
-| NameCheckCode | FilenamesSorted |
+| The code to check the filenames | The result, sorted filenames |
 | -------------- | --------------- |
-| ![Filename checker](img/NameCheckCode.png) | ![Filenames Sorter](img/FilenamesSorted.png) |
+| ![Filenamechecker](img/NameCheckCode.png) | ![FilenamesSorted](img/FilenamesSorted.png) |
 
-The table above displays the images side by side.
+
 
