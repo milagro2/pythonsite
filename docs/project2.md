@@ -1,4 +1,4 @@
-```geojson
+
 {
   "type": "FeatureCollection",
   "features": [
@@ -23,4 +23,3 @@
     }
   ]
 }
-```
