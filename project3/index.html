@@ -414,6 +414,45 @@
 </tr>
 </tbody>
 </table>
+<details>
+
+<summary>The code to check the filename:</summary>
+
+
+<pre><code class="language-ruby">import os
+import sys
+
+folder_path = &quot;projects/project1/TestFiles&quot;
+file_list = os.listdir(folder_path)
+
+good_files = []
+bad_files = []
+for file_name in file_list:
+    file_path = os.path.join(folder_path, file_name)
+    if os.path.isfile(file_path):
+        if file_name.startswith('BusinessRule_ba_'):
+            good_files.append(file_path)
+        else:
+            bad_files.append(file_path)
+if good_files:
+    print(&quot;These are correct:&quot;)
+    for good_file in good_files:
+        print(good_file)
+else:
+    print(&quot;No correct filenames found.&quot;)
+if bad_files:
+    print(&quot;\nThese are bad:&quot;)
+    for bad_file in bad_files:
+        print(bad_file)
+    print(&quot;\nError: We found files that violate the naming convention&quot;)
+    sys.exit(1)
+
+else:
+    print(&quot;\nAll filenames are correct.&quot;)
+</code></pre>
+
+
+</details>
 
 
 
