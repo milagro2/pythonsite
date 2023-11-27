@@ -9,4 +9,9 @@ nav:
       - Project 3 - File name convention checker: project3.md
       - Project 4 - Variable name convention checker: project4.md
 
-theme: material
+theme:
+  name: material
+  custom_dir: path/to/your/custom/styles
+  palette:
+    primary: "indigo"
+    accent: "pink"
