@@ -24,3 +24,6 @@ jobs:
 
     - name: Run namechecker script GoodName.py
       run: python projects/project1/GoodName.py
+      
+    - name: Run main.py
+      run: python main.py
