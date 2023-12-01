@@ -23,5 +23,5 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run namechecker script GoodName.py
-      run: python projects/project1/GoodName.py
+      run: python projects/project3/GoodName.py
       
