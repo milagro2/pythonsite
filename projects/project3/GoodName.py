@@ -1,7 +1,11 @@
 import os
 import sys
 
+<<<<<<< HEAD:projects/project1/GoodName.py
+folder_path = "projects/project2/TestFiles"
+=======
 folder_path = "projects/project3/TestFiles"
+>>>>>>> master:projects/project3/GoodName.py
 file_list = os.listdir(folder_path)
 
 good_files = []

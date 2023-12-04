@@ -3,7 +3,12 @@ name: Run Python Script
 on:
   push:
     branches:
+<<<<<<< HEAD
+      - variable-defined
+
+=======
       - master
+>>>>>>> master
 jobs:
   run-python-script:
     runs-on: ubuntu-latest
@@ -22,6 +27,15 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+<<<<<<< HEAD
+    - name: Run VariableChecker.py
+      run: python projects/project2/VariableChecker.py
+
+    - name: Run WordFinder.py
+      run: python projects/project2/WordFinder.py
+ 
+=======
     - name: Run namechecker script GoodName.py
       run: python projects/project3/GoodName.py
       
+>>>>>>> master
