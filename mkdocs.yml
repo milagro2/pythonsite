@@ -1,4 +1,4 @@
-site_name: My first Phyton website
+site_name: Python Projects
 #site_url: https://milastam.com/
 nav:
   - Home: index.md
