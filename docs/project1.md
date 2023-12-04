@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-#project 1
-In project 1 I wrote a Python script that reads all the filenames and checks if the name is correct or not. The name is correct when it has a specific word in front of it. Than it makes a list of 'good_files' and 'bad_files' and gives an error so you know which file names to fix.
-  - heres the code: blah
-=======
 # Project 1 - Github / First open source contribution
 
 For the first project, I learned a bit more about Github and how to use it. 
@@ -33,4 +28,3 @@ git push -u origin ContBranch
 ```
 After that I went to the repo, clicked on the `Pull request`, then on the `Compare and pull request` button and finaly on the `Create pull request` to submit it all. <br>
 Now the changes should get merged into the main branch.
->>>>>>> master
