@@ -28,7 +28,12 @@ nav:
 
 theme: material
 ```
-Its easy to add pages and sub-pages in the nav. I also added a theme (material) <br>
+Its easy to add pages and sub-pages in the nav. <br>
+For the theme I first put this command in the terminal:
+```yml
+pip install mkdocs-material
+```
+And wrote `material` behind theme in mkdocs.yml. MkDocs comes with two built in themes: `mkdocs` and `readthedocs`. <br>
 I then used this to build a documentation:
 ```yml
 mkdocs build
