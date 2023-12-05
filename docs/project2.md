@@ -1,7 +1,6 @@
 # Project 2 - Python site with MkDocs
 
 For project 2 I learned how to make this website using MkDocs. I used this [tutorial](https://www.mkdocs.org/getting-started/).
-
 ---
 The first thing I did was open Python and run this command in the terminal:
 ```yml
@@ -33,7 +32,7 @@ For the theme I first put this command in the terminal:
 ```yml
 pip install mkdocs-material
 ```
-And wrote `material` behind theme in mkdocs.yml. MkDocs comes with two built in themes: `mkdocs` and `readthedocs`. <br>
+And wrote `material` behind theme in mkdocs.yml. MkDocs comes with two built in themes: `mkdocs` and `readthedocs` but I found more themes made by other people [here](https://github.com/mkdocs/mkdocs/wiki/MkDocs-Themes). <br>
 I then used this to build a documentation:
 ```yml
 mkdocs build
