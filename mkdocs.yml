@@ -1,5 +1,5 @@
 site_name: Python Projects
-#site_url: https://milastam.com/
+site_url: https://pythonprojects.com/
 nav:
   - Home: index.md
   - Agile: https://milagro2.github.io./Agile.html
