@@ -10,5 +10,4 @@ nav:
       - Project 4 - Variable name convention checker: project4.md
 
 theme:
-  name: dracul
-  
+  name: dracula 
