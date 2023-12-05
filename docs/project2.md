@@ -1,5 +1,6 @@
 # Project 2 - Python site with MkDocs
 
+
 For project 2 I learned how to make this website using MkDocs. I used this [tutorial](https://www.mkdocs.org/getting-started/).
 
 ---
