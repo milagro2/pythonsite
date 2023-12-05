@@ -1,6 +1,7 @@
 # Project 2 - Python site with MkDocs
 
 For project 2 I learned how to make this website using MkDocs. I used this [tutorial](https://www.mkdocs.org/getting-started/).
+
 ---
 The first thing I did was open Python and run this command in the terminal:
 ```yml
