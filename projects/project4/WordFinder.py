@@ -1,6 +1,20 @@
 import os
 import sys
 
+def extract_alias_value_pairs(lines):
+    alias_value_pairs = []
+    alias = None
+
+    for line in lines:
+        if 'alias' in line:
+            alias = line.strip()
+        elif 'value' in line and alias:
+            value = line.strip()
+            alias_value_pairs.append((alias, value))
+            alias = None
+
+    return alias_value_pairs
+
 folder_path = "projects/project4/TestFiles"
 file_list = os.listdir(folder_path)
 
@@ -10,21 +24,18 @@ for file_name in file_list:
     if os.path.isfile(file_path):
         with open(file_path, 'r') as file:
             lines = file.readlines()
-            alias_lines = [line.strip() for line in lines if 'alias' in line]
-            value_lines = [line.strip() for line in lines if 'value' in line]
-            if alias_lines:
-                print(f"\nLines with 'alias' followed by 'value' in {file_name}:")
-                for alias_line, value_line in zip(alias_lines, value_lines):
-                    alias_value_pair = f"{alias_line}, {value_line}"
 
-                    alias = alias_line.split('"')[3]
-                    value = value_line.split('"')[3]
+            alias_value_pairs = extract_alias_value_pairs(lines)
 
-                    print(alias_value_pair)
+            if alias_value_pairs:
+                print(f"\nAlias-Value pairs in {file_name}:")
+
+                for alias, value in alias_value_pairs:
+                    print(f'{alias}, {value}', end=' ')
 
                     if alias == value:
-                        print("Alias is the same as value")
+                        print("alias is same as value")
                     else:
-                        print("Alias is not the same as value")
+                        print("alias is not the same as value")
 
 print("\nCheck complete.")
