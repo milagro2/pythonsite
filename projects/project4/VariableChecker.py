@@ -23,6 +23,16 @@ def extract_json_objects(file_path):
 
     return extracted_objects
 
+def check_alias_value_relationship(alias, value):
+    # Check for exceptions
+    if alias == 'node' and value is None:
+        return True
+    elif alias == 'manager' and value is None:
+        return True
+
+    # Check if alias is the same as value
+    return alias == value
+
 def process_files(folder_path):
     file_list = os.listdir(folder_path)
 
@@ -35,7 +45,14 @@ def process_files(folder_path):
             print(f"\n--------------- these are all the JSON objects from {file_name} ---------------")
 
             for label, json_object in extracted_objects.items():
-                print(f"\n{label}:\n{json.dumps(json_object, indent=2)}")
+                alias = json_object.get('alias')
+                value = json_object.get('value')
+
+                # Check alias-value relationship
+                if check_alias_value_relationship(alias, value):
+                    print(f"\n{label}:\n{json.dumps(json_object, indent=2)}")
+                else:
+                    print(f"\nSkipping {label} due to alias-value relationship condition.")
 
 folder_path = "projects/project4/TestFiles"
 process_files(folder_path)
