@@ -3,14 +3,18 @@ import os
 def extract_alias_value_pairs(lines):
     alias_value_pairs = []
     alias = None
+    current_object_bind_contract = False
 
     for line in lines:
+        if 'contract' in line and 'CurrentObjectBindContract' in line:
+            current_object_bind_contract = True
         if 'alias' in line:
             alias = line.strip(' ,"').split(':')[1].strip()
         elif 'value' in line and alias:
             value = line.strip(' ,"').split(':')[1].strip()
-            alias_value_pairs.append((alias, value))
+            alias_value_pairs.append((alias, value, current_object_bind_contract))
             alias = None
+            current_object_bind_contract = False
 
     return alias_value_pairs
 
@@ -29,22 +33,15 @@ for file_name in file_list:
             if alias_value_pairs:
                 print(f"\nAlias-Value pairs in {file_name}:")
 
-                for alias, value in alias_value_pairs:
+                for alias, value, current_object_bind_contract in alias_value_pairs:
                     print(f'alias: {alias}, value: {value}', end=' ')
 
-
-                    if 'CurrentObjectBindContract' in lines:
+                    if current_object_bind_contract:
+                        # Check for specific conditions for CurrentObjectBindContract
                         if alias == 'node':
                             print("alias and value are correct")
                         else:
                             print("----------------alias or value is not correct----------------")
-
-                    elif 'ManagerBindContract' in lines:
-                        if alias == '"manager"':
-                            print("alias and value are correct")
-                        else:
-                            print("----------------alias or value is not correct----------------")
-
                     elif alias != value:
                         print("----------------alias or value is not correct----------------")
                     else:
