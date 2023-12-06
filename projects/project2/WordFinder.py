@@ -1,7 +1,7 @@
 import os
 import sys
 
-folder_path = "projects/project2/TestFiles"
+folder_path = "projects/project4/TestFiles"
 file_list = os.listdir(folder_path)
 
 for file_name in file_list:
