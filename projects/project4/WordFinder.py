@@ -32,7 +32,17 @@ for file_name in file_list:
                 for alias, value in alias_value_pairs:
                     print(f'alias: {alias}, value: {value}', end=' ')
 
-                    if alias != value and 'CurrentObjectBindContract' not in lines and 'ManagerBindContract' not in lines and 'BusinessActionBindContract' not in lines:
+                    if 'CurrentObjectBindContract' in lines:
+                        if alias == 'node':
+                            print("alias and value are correct")
+                        else:
+                            print("----------------alias or value is not correct----------------")
+                    elif 'ManagerBindContract' in lines:
+                        if alias == 'manager':
+                            print("alias and value are correct")
+                        else:
+                            print("----------------alias or value is not correct----------------")
+                    elif alias != value:
                         print("alias and value are correct")
                     else:
                         print("----------------alias or value is not correct----------------")
