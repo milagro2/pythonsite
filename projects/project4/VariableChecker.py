@@ -19,7 +19,11 @@ def extract_json_objects(file_path):
         if match:
             object_label = re.search(r'===== (.*?) =====', pattern).group(1)
             object_json = match.group(1)
-            extracted_objects[object_label] = json.loads(object_json)
+            json_data = json.loads(object_json)
+
+            # Check if both "alias" and "value" are present in the JSON
+            if all(key in json_data for key in ["alias", "value"]):
+                extracted_objects[object_label] = json_data
 
     return extracted_objects
 
@@ -32,10 +36,11 @@ def process_files(folder_path):
         if os.path.isfile(file_path):
             extracted_objects = extract_json_objects(file_path)
 
-            print(f"\n--------------- these are all the JSON objects from {file_name} ---------------")
+            if extracted_objects:
+                print(f"\n--------------- these are all the JSON objects from {file_name} ---------------")
 
-            for label, json_object in extracted_objects.items():
-                print(f"\n{label}:\n{json.dumps(json_object, indent=2)}")
+                for label, json_object in extracted_objects.items():
+                    print(f"\n{label}:\n{json.dumps(json_object, indent=2)}")
 
 folder_path = "projects/project4/TestFiles"
 process_files(folder_path)
