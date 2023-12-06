@@ -23,8 +23,42 @@ def extract_json_objects(file_path):
 
     return extracted_objects
 
+def check_alias_value_relationship(file_name, json_object):
+    issues = []
+
+    for bind in json_object.get('binds', []):
+        if bind['contract'] == 'CurrentObjectBindContract' and bind['alias'] != 'node' and bind['value'] is not None:
+            if bind['alias'] != bind['value']:
+                issue = {
+                    'file_name': file_name,
+                    'bind_alias': bind['alias'],
+                    'bind_issue': 'Bind does not match value'
+                }
+                issues.append(issue)
+
+        if bind['contract'] == 'ManagerBindContract' and bind['alias'] != 'manager' and bind['value'] is not None:
+            if bind['alias'] != bind['value']:
+                issue = {
+                    'file_name': file_name,
+                    'bind_alias': bind['alias'],
+                    'bind_issue': 'Bind does not match value'
+                }
+                issues.append(issue)
+
+        if bind['contract'] == 'BusinessActionBindContract' and bind['alias'] != bind['value']:
+            issue = {
+                'file_name': file_name,
+                'bind_alias': bind['alias'],
+                'bind_issue': 'Bind does not match value'
+            }
+            issues.append(issue)
+
+    return issues
+
 def process_files(folder_path):
     file_list = os.listdir(folder_path)
+
+    all_issues = []
 
     for file_name in file_list:
         file_path = os.path.join(folder_path, file_name)
@@ -32,12 +66,21 @@ def process_files(folder_path):
         if os.path.isfile(file_path):
             extracted_objects = extract_json_objects(file_path)
 
-            print(f"\n--------------- these are all the JSON objects from {file_name} ---------------")
-
             for label, json_object in extracted_objects.items():
-                print(f"\n{label}:\n{json.dumps(json_object, indent=2)}")
+                if label == 'business rule plugin definition':
+                    issues = check_alias_value_relationship(file_name, json_object)
+                    all_issues.extend(issues)
+
+    return all_issues
 
 folder_path = "projects/project4/TestFiles"
-process_files(folder_path)
+all_issues = process_files(folder_path)
+
+if all_issues:
+    print("\nIssues found:")
+    for issue in all_issues:
+        print(f"File: {issue['file_name']}, Bind Alias: {issue['bind_alias']}, Issue: {issue['bind_issue']}")
+else:
+    print("\nNo issues found.")
 
 print("\nCheck complete.")
