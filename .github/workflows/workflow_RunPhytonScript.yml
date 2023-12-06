@@ -27,4 +27,8 @@ jobs:
     - name: Run namechecker script GoodName.py
       run: python projects/project3/GoodName.py
       
-
+    - name: Run variable checker script VariableChecker.py
+      run: python projects/project4/VariableChecker.py
+      
+    - name: Run word finder script WordFinder.py
+      run: python projects/project4/WordFinder.py
