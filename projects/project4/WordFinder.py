@@ -32,19 +32,19 @@ for file_name in file_list:
                 for alias, value in alias_value_pairs:
                     print(f'alias: {alias}, value: {value}', end=' ')
 
-                    # Check for specific conditions for CurrentObjectBindContract
+
                     if 'CurrentObjectBindContract' in lines:
                         if alias == 'node':
                             print("alias and value are correct")
                         else:
                             print("----------------alias or value is not correct----------------")
-                    # Check for specific conditions for ManagerBindContract
+
                     elif 'ManagerBindContract' in lines:
-                        if alias == 'manager':
+                        if alias == '"manager"':
                             print("alias and value are correct")
                         else:
                             print("----------------alias or value is not correct----------------")
-                    # Apply normal rule for other contracts
+
                     elif alias != value:
                         print("----------------alias or value is not correct----------------")
                     else:
