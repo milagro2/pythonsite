@@ -12,18 +12,19 @@ for file_name in file_list:
 
             alias_and_value_lines = []
             current_object = ""
+            value_found = False
 
             for line in lines:
-                if 'alias' in line or 'value' in line:
-                    current_object += line.strip() + ' '
-                
-                # Check if both 'alias' and 'value' are present in the current object
-                if 'alias' in current_object and 'value' in current_object:
+                if 'alias' in line:
+                    current_object = line.strip()
+                    value_found = False
+                elif 'value' in line and not value_found:
+                    current_object += ' ' + line.strip()
                     alias_and_value_lines.append(current_object)
-                    current_object = ""
+                    value_found = True
 
             if alias_and_value_lines:
-                print(f"\nLines with 'alias' and 'value' in {file_name}:")
+                print(f"\nLines with 'alias' followed by 'value' in {file_name}:")
                 for line in alias_and_value_lines:
                     print(line)
 
