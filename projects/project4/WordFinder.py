@@ -1,5 +1,4 @@
 import os
-import sys
 
 folder_path = "projects/project4/TestFiles"
 file_list = os.listdir(folder_path)
@@ -10,17 +9,22 @@ for file_name in file_list:
     if os.path.isfile(file_path):
         with open(file_path, 'r') as file:
             lines = file.readlines()
-            alias_lines = [line.strip() for line in lines if 'alias' in line]
-            value_lines = [line.strip() for line in lines if 'value' in line]
-            if alias_lines:
-                print(f"\nLines with 'alias' in {file_name}:")
-                for alias_line in alias_lines:
-                    print(alias_line)
-                for value_line in value_lines:
-                    print(value_line)
 
-            # if value_lines:
-            #     print(f"\nLines with 'value' in {file_name}:")
+            alias_and_value_lines = []
+            current_object = ""
 
+            for line in lines:
+                if 'alias' in line or 'value' in line:
+                    current_object += line.strip() + ' '
+                
+                # Check if both 'alias' and 'value' are present in the current object
+                if 'alias' in current_object and 'value' in current_object:
+                    alias_and_value_lines.append(current_object)
+                    current_object = ""
+
+            if alias_and_value_lines:
+                print(f"\nLines with 'alias' and 'value' in {file_name}:")
+                for line in alias_and_value_lines:
+                    print(line)
 
 print("\nCheck complete.")
