@@ -73,6 +73,7 @@ def process_files(folder_path):
 
     return all_issues
 
+# Replace 'folder_path' with the actual path to your folder
 folder_path = "projects/project4/TestFiles"
 all_issues = process_files(folder_path)
 
