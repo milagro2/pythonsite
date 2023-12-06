@@ -35,8 +35,9 @@ for file_name in file_list:
                     if alias == value:
                         print("alias and value are correct")
                     else:
-                        if 'contract' in lines:
-                            contract = lines[lines.index('contract') + 1].strip(' ,"').split(':')[1].strip()
+                        contract_lines = [line for line in lines if 'contract' in line]
+                        if contract_lines:
+                            contract = contract_lines[0].strip(' ,"').split(':')[1].strip()
                             if contract == 'CurrentObjectBindContract' and alias != 'node':
                                 print("alias is not 'node' as expected")
                             elif contract == 'ManagerBindContract' and alias != 'manager':
