@@ -38,7 +38,7 @@
     "contract" : "BusinessActionBindContract",
     "alias" : "ba_InitiateWFUpdateExistingArticle",
     "parameterClass" : "com.stibo.core.domain.impl.businessrule.FrontBusinessActionImpl",
-    "value" : "ba_InitiateWFUpdateExistingArticle",
+    "value" : "ba_InitiateWFUpdateExistingArticleaaaaaaaaa",
     "description" : null
   } ],
   "messages" : [ ],
