@@ -30,7 +30,8 @@ def check_alias_value_relationship(alias, value):
     elif alias == 'manager' and value is None:
         return True
 
-    return alias == value
+    # Check if alias is not the same as value
+    return alias != value
 
 def process_files(folder_path):
     file_list = os.listdir(folder_path)
@@ -41,7 +42,7 @@ def process_files(folder_path):
         if os.path.isfile(file_path):
             extracted_objects = extract_json_objects(file_path)
 
-            print(f"\n--------------- these are all the JSON objects from {file_name} ---------------")
+            print(f"\n--------------- these are all the JSON objects from {file_name} where alias and value are not the same ---------------")
 
             for label, json_object in extracted_objects.items():
                 alias = json_object.get('alias')
@@ -50,8 +51,6 @@ def process_files(folder_path):
                 # Check alias-value relationship
                 if check_alias_value_relationship(alias, value):
                     print(f"\n{label}:\n{json.dumps(json_object, indent=2)}")
-                else:
-                    print(f"\nSkipping {label} due to alias-value relationship condition.")
 
 folder_path = "projects/project4/TestFiles"
 process_files(folder_path)
