@@ -1,4 +1,5 @@
 import os
+import re
 
 def extract_alias_value_pairs(lines):
     alias_value_pairs = []
@@ -35,18 +36,19 @@ for file_name in file_list:
                     if alias == value:
                         print("alias and value are correct")
                     else:
-                        contract_lines = [line for line in lines if 'contract' in line]
-                        if contract_lines:
-                            contract = contract_lines[0].strip(' ,"').split(':')[1].strip()
-                            if contract == 'CurrentObjectBindContract' and alias != 'node':
-                                print("alias is not 'node' as expected")
-                            elif contract == 'ManagerBindContract' and alias != 'manager':
-                                print("alias is not 'manager' as expected")
-                            elif contract == 'BusinessActionBindContract' and alias != value:
-                                print("alias is not the same as value as expected")
-                            else:
-                                print("alias and value are correct")
-                        else:
-                            print("alias and value are correct")
+                        print("----------------alias or value is not correct----------------")
+
+                for bind in alias_value_pairs:
+                    if bind['contract'] == 'CurrentObjectBindContract':
+                        if bind['alias'] != 'node':
+                            raise Exception(f'Not node in {file_name}')
+                    
+                    if bind['contract'] == 'ManagerBindContract':
+                        if bind['alias'] != 'manager':
+                            raise Exception(f'Not manager in {file_name}')
+                    
+                    if bind['contract'] == 'BusinessActionBindContract':
+                        if bind['alias'] != bind['value']:
+                            raise Exception(f'Not the same in {file_name}')
 
 print("\nCheck complete.")
