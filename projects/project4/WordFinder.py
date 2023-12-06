@@ -15,33 +15,39 @@ def extract_alias_value_pairs(lines):
 
     return alias_value_pairs
 
-def check_bind_contract(file_name, binds):
+def check_bind_contracts(file_path, extracted_objects):
     issues = []
 
-    for bind in binds:
-        if bind['contract'] == 'AttributeBindContract':
-            if bind['alias'] != bind['value']:
-                issues.append({
-                    'file_name': file_name,
-                    'bind_alias': bind['alias'],
-                    'bind_issue': 'Bind does not match value'
-                })
+    for label, json_object in extracted_objects.items():
+        if label == 'business rule plugin definition' and 'binds' in json_object:
+            for bind in json_object['binds']:
+                contract = bind.get('contract', '')
+                alias = bind.get('alias', '')
+                value = bind.get('value', '')
 
-        elif bind['contract'] == 'CurrentObjectBindContract':
-            if bind['alias'] != 'node':
-                issues.append({
-                    'file_name': file_name,
-                    'bind_alias': bind['alias'],
-                    'bind_issue': 'CurrentObjectBindContract alias should be "node"'
-                })
+                if contract == 'AttributeBindContract':
+                    if alias != value:
+                        issues.append({
+                            'file_name': file_path,
+                            'bind_alias': alias,
+                            'bind_issue': 'Alias is not the same as value'
+                        })
 
-        elif bind['contract'] == 'ManagerBindContract':
-            if bind['alias'] != 'manager':
-                issues.append({
-                    'file_name': file_name,
-                    'bind_alias': bind['alias'],
-                    'bind_issue': 'ManagerBindContract alias should be "manager"'
-                })
+                elif contract == 'CurrentObjectBindContract':
+                    if alias != 'node':
+                        issues.append({
+                            'file_name': file_path,
+                            'bind_alias': alias,
+                            'bind_issue': 'Alias is not "node" for CurrentObjectBindContract'
+                        })
+
+                elif contract == 'ManagerBindContract':
+                    if alias != 'manager':
+                        issues.append({
+                            'file_name': file_path,
+                            'bind_alias': alias,
+                            'bind_issue': 'Alias is not "manager" for ManagerBindContract'
+                        })
 
     return issues
 
@@ -53,27 +59,27 @@ for file_name in file_list:
 
     if os.path.isfile(file_path):
         with open(file_path, 'r') as file:
-            content = file.read()
-            json_objects = json.loads(content)
+            lines = file.readlines()
 
-            alias_value_pairs = extract_alias_value_pairs(content)
+            alias_value_pairs = extract_alias_value_pairs(lines)
 
             if alias_value_pairs:
                 print(f"\nAlias-Value pairs in {file_name}:")
 
-                binds_list = []
-                for _, json_object in alias_value_pairs.items():
-                    if 'binds' in json_object:
-                        binds_list.extend(json_object['binds'])
+                for alias, value in alias_value_pairs:
+                    print(f'alias: {alias}, value: {value}', end=' ')
 
-                issues = check_bind_contract(file_name, binds_list)
+                    if alias == value:
+                        print("alias is the same as value")
+                    else:
+                        print("----------------alias is not the same as value----------------")
 
+                extracted_objects = extract_json_objects(file_path)
+                bind_issues = check_bind_contracts(file_path, extracted_objects)
 
-                if issues:
-                    print("Bind Issues:")
-                    for issue in issues:
-                        print(f"File: {issue['file_name']}, Alias: {issue['bind_alias']}, Issue: {issue['bind_issue']}")
-                else:
-                    print("No bind issues found")
+                if bind_issues:
+                    print("\nBind Issues:")
+                    for issue in bind_issues:
+                        print(f"File: {issue['file_name']}, Bind Alias: {issue['bind_alias']}, Issue: {issue['bind_issue']}")
 
 print("\nCheck complete.")
