@@ -1,5 +1,4 @@
 import os
-import sys
 
 def extract_alias_value_pairs(lines):
     alias_value_pairs = []
@@ -7,9 +6,9 @@ def extract_alias_value_pairs(lines):
 
     for line in lines:
         if 'alias' in line:
-            alias = line.strip()
+            alias = line.strip(' ,"').split(':')[1].strip()
         elif 'value' in line and alias:
-            value = line.strip()
+            value = line.strip(' ,"').split(':')[1].strip()
             alias_value_pairs.append((alias, value))
             alias = None
 
