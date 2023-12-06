@@ -16,11 +16,11 @@ for file_name in file_list:
                 print(f"\nLines with 'alias' in {file_name}:")
                 for alias_line in alias_lines:
                     print(alias_line)
-
-            if value_lines:
-                print(f"\nLines with 'value' in {file_name}:")
-                for value_line in value_lines:
                     print(value_line)
+
+            # if value_lines:
+            #     print(f"\nLines with 'value' in {file_name}:")
+            #     for value_line in value_lines:
 
 
 print("\nCheck complete.")
