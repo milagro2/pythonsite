@@ -30,7 +30,6 @@ def check_alias_value_relationship(alias, value):
     elif alias == 'manager' and value is None:
         return True
 
-    # Check if alias is the same as value
     return alias == value
 
 def process_files(folder_path):
