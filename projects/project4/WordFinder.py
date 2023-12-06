@@ -33,8 +33,8 @@ for file_name in file_list:
                     print(f'{alias}, {value}', end=' ')
 
                     if alias == value:
-                        print("alias is same as value")
+                        print("alias is the same as value")
                     else:
-                        print("alias is not the same as value")
+                        print("------------------------------------alias is not the same as value------------------------------------")
 
 print("\nCheck complete.")
