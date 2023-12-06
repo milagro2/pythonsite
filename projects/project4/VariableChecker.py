@@ -23,18 +23,10 @@ def extract_json_objects(file_path):
 
     return extracted_objects
 
-def check_alias_value_relationship(alias, value):
-    # Check for exceptions
-    if alias == 'node' and value is None:
-        return True
-    elif alias == 'manager' and value is None:
-        return True
-
-    # Check if alias is not the same as value
-    return alias != value
-
 def process_files(folder_path):
     file_list = os.listdir(folder_path)
+
+    issues = []
 
     for file_name in file_list:
         file_path = os.path.join(folder_path, file_name)
@@ -42,17 +34,53 @@ def process_files(folder_path):
         if os.path.isfile(file_path):
             extracted_objects = extract_json_objects(file_path)
 
-            print(f"\n--------------- these are all the JSON objects from {file_name} where alias and value are not the same ---------------")
-
             for label, json_object in extracted_objects.items():
-                alias = json_object.get('alias')
-                value = json_object.get('value')
+                if label == 'business rule plugin definition':
+                    issues += check_plugin_definition(json_object, file_name)
 
-                # Check alias-value relationship
-                if check_alias_value_relationship(alias, value):
-                    print(f"\n{label}:\n{json.dumps(json_object, indent=2)}")
+    return issues
 
+def check_plugin_definition(json_object, file_name):
+    issues = []
+
+    for bind in json_object.get('binds', []):
+        if bind.get('contract') == 'CurrentObjectBindContract':
+            if bind.get('alias') != 'node' and bind.get('value') is not None:
+                issues.append({
+                    'file_name': file_name,
+                    'bind_alias': bind.get('alias'),
+                    'bind_issue': 'Not node'
+                })
+            
+        elif bind.get('contract') == 'ManagerBindContract':
+            if bind.get('alias') != 'manager' and bind.get('value') is not None:
+                issues.append({
+                    'file_name': file_name,
+                    'bind_alias': bind.get('alias'),
+                    'bind_issue': 'Manager bind is not named manager'
+                })
+
+        elif bind.get('contract') == 'BusinessActionBindContract':
+            if bind.get('alias') != bind.get('value'):
+                issues.append({
+                    'file_name': file_name,
+                    'bind_alias': bind.get('alias'),
+                    'bind_issue': 'Bind does not match value'
+                })
+
+    return issues
+
+# Replace 'folder_path' with the actual path to your folder
 folder_path = "projects/project4/TestFiles"
-process_files(folder_path)
+resulting_issues = process_files(folder_path)
+
+if resulting_issues:
+    print("\nIssues found:")
+    for issue in resulting_issues:
+        print(f"\nFile: {issue['file_name']}")
+        print(f"Bind Alias: {issue['bind_alias']}")
+        print(f"Issue: {issue['bind_issue']}")
+else:
+    print("\nNo issues found.")
 
 print("\nCheck complete.")
