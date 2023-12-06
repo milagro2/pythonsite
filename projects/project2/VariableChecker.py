@@ -37,7 +37,7 @@ def process_files(folder_path):
             for label, json_object in extracted_objects.items():
                 print(f"\n{label}:\n{json.dumps(json_object, indent=2)}")
 
-folder_path = "projects/project2/TestFiles"
+folder_path = "projects/project4/TestFiles"
 process_files(folder_path)
 
 print("\nCheck complete.")
