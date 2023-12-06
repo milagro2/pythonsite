@@ -5,7 +5,7 @@ In project 3, I wrote a Python script that reads all the filenames and checks if
 <br>
 
 | The code to check the filenames | The result, sorted filenames |
-| -------------- | --------------- |
+| -------------- | :---------------: |
 | ![Filenamechecker](img/NameCheckCode.png) | ![FilenamesSorted](img/FilenamesSorted.png) |
 
 <details>
@@ -16,7 +16,7 @@ In project 3, I wrote a Python script that reads all the filenames and checks if
 import os
 import sys
 
-folder_path = "projects/project1/TestFiles"
+folder_path = "projects/project3/TestFiles"
 file_list = os.listdir(folder_path)
 
 good_files = []
