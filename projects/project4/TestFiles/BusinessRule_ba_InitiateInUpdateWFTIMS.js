@@ -32,7 +32,7 @@
     "contract" : "ReferenceTypeBindContract",
     "alias" : "ptp_PartnerArticle",
     "parameterClass" : "com.stibo.core.domain.impl.ReferenceTypeImpl",
-    "value" : "ptp_PartnerArticleteesstetsts",
+    "value" : "ptp_PartnerArticle",
     "description" : null
   }, {
     "contract" : "ObjectTypeBindContract",
