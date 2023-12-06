@@ -1,3 +1,8 @@
+import os
+
+folder_path = "projects/project4/TestFiles"
+file_list = os.listdir(folder_path)
+
 for file_name in file_list:
     file_path = os.path.join(folder_path, file_name)
 
