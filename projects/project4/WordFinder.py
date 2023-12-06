@@ -30,11 +30,11 @@ for file_name in file_list:
                 print(f"\nAlias-Value pairs in {file_name}:")
 
                 for alias, value in alias_value_pairs:
-                    print(f'{alias}, {value}', end=' ')
+                    print(f'alias: {alias}, value: {value}', end=' ')
 
                     if alias == value:
                         print("alias is the same as value")
                     else:
-                        print("------------------------------------alias is not the same as value------------------------------------")
+                        print("----------------alias is not the same as value----------------")
 
 print("\nCheck complete.")
