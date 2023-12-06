@@ -1,23 +1,3 @@
-import os
-import re
-
-def extract_alias_value_pairs(lines):
-    alias_value_pairs = []
-    alias = None
-
-    for line in lines:
-        if 'alias' in line:
-            alias = line.strip(' ,"').split(':')[1].strip()
-        elif 'value' in line and alias:
-            value = line.strip(' ,"').split(':')[1].strip()
-            alias_value_pairs.append((alias, value))
-            alias = None
-
-    return alias_value_pairs
-
-folder_path = "projects/project4/TestFiles"
-file_list = os.listdir(folder_path)
-
 for file_name in file_list:
     file_path = os.path.join(folder_path, file_name)
 
@@ -39,16 +19,20 @@ for file_name in file_list:
                         print("----------------alias or value is not correct----------------")
 
                 for bind in alias_value_pairs:
-                    if bind['contract'] == 'CurrentObjectBindContract':
-                        if bind['alias'] != 'node':
+                    contract = bind[0]
+                    alias = bind[1]
+                    value = bind[2]
+                    
+                    if contract == 'CurrentObjectBindContract':
+                        if alias != 'node':
                             raise Exception(f'Not node in {file_name}')
                     
-                    if bind['contract'] == 'ManagerBindContract':
-                        if bind['alias'] != 'manager':
+                    if contract == 'ManagerBindContract':
+                        if alias != 'manager':
                             raise Exception(f'Not manager in {file_name}')
                     
-                    if bind['contract'] == 'BusinessActionBindContract':
-                        if bind['alias'] != bind['value']:
+                    if contract == 'BusinessActionBindContract':
+                        if alias != value:
                             raise Exception(f'Not the same in {file_name}')
 
 print("\nCheck complete.")
