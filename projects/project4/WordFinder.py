@@ -32,7 +32,7 @@ for file_name in file_list:
                 for alias, value in alias_value_pairs:
                     print(f'alias: {alias}, value: {value}', end=' ')
 
-                    if alias == value:
+                    if alias == value and alias = 'node':
                         print("alias is the same as value")
                     else:
                         print("----------------alias is not the same as value----------------")
