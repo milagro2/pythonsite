@@ -1,5 +1,19 @@
 import os
 
+def extract_alias_value_pairs(lines):
+    alias_value_pairs = []
+    alias = None
+
+    for line in lines:
+        if 'alias' in line:
+            alias = line.strip(' ,"').split(':')[1].strip()
+        elif 'value' in line and alias:
+            value = line.strip(' ,"').split(':')[1].strip()
+            alias_value_pairs.append((alias, value))
+            alias = None
+
+    return alias_value_pairs
+
 folder_path = "projects/project4/TestFiles"
 file_list = os.listdir(folder_path)
 
@@ -18,26 +32,9 @@ for file_name in file_list:
                 for alias, value in alias_value_pairs:
                     print(f'alias: {alias}, value: {value}', end=' ')
 
-                    if alias == value:
+                    if alias != value and 'CurrentObjectBindContract' not in lines and 'ManagerBindContract' not in lines and 'BusinessActionBindContract' not in lines:
                         print("alias and value are correct")
                     else:
                         print("----------------alias or value is not correct----------------")
-
-                for bind in alias_value_pairs:
-                    contract = bind[0]
-                    alias = bind[1]
-                    value = bind[2]
-                    
-                    if contract == 'CurrentObjectBindContract':
-                        if alias != 'node':
-                            raise Exception(f'Not node in {file_name}')
-                    
-                    if contract == 'ManagerBindContract':
-                        if alias != 'manager':
-                            raise Exception(f'Not manager in {file_name}')
-                    
-                    if contract == 'BusinessActionBindContract':
-                        if alias != value:
-                            raise Exception(f'Not the same in {file_name}')
 
 print("\nCheck complete.")
