@@ -1,4 +1,5 @@
 import os
+import json
 
 def extract_alias_value_pairs(lines):
     alias_value_pairs = []
@@ -14,6 +15,36 @@ def extract_alias_value_pairs(lines):
 
     return alias_value_pairs
 
+def check_bind_contract(file_name, binds):
+    issues = []
+
+    for bind in binds:
+        if bind['contract'] == 'AttributeBindContract':
+            if bind['alias'] != bind['value']:
+                issues.append({
+                    'file_name': file_name,
+                    'bind_alias': bind['alias'],
+                    'bind_issue': 'Bind does not match value'
+                })
+
+        elif bind['contract'] == 'CurrentObjectBindContract':
+            if bind['alias'] != 'node':
+                issues.append({
+                    'file_name': file_name,
+                    'bind_alias': bind['alias'],
+                    'bind_issue': 'CurrentObjectBindContract alias should be "node"'
+                })
+
+        elif bind['contract'] == 'ManagerBindContract':
+            if bind['alias'] != 'manager':
+                issues.append({
+                    'file_name': file_name,
+                    'bind_alias': bind['alias'],
+                    'bind_issue': 'ManagerBindContract alias should be "manager"'
+                })
+
+    return issues
+
 folder_path = "projects/project4/TestFiles"
 file_list = os.listdir(folder_path)
 
@@ -22,19 +53,27 @@ for file_name in file_list:
 
     if os.path.isfile(file_path):
         with open(file_path, 'r') as file:
-            lines = file.readlines()
+            content = file.read()
+            json_objects = json.loads(content)
 
-            alias_value_pairs = extract_alias_value_pairs(lines)
+            alias_value_pairs = extract_alias_value_pairs(content)
 
             if alias_value_pairs:
                 print(f"\nAlias-Value pairs in {file_name}:")
 
-                for alias, value in alias_value_pairs:
-                    print(f'alias: {alias}, value: {value}', end=' ')
+                binds_list = []
+                for _, json_object in alias_value_pairs.items():
+                    if 'binds' in json_object:
+                        binds_list.extend(json_object['binds'])
 
-                    if alias == value:
-                        print("alias is the same as value")
-                    else:
-                        print("----------------alias is not the same as value----------------")
+                issues = check_bind_contract(file_name, binds_list)
+
+
+                if issues:
+                    print("Bind Issues:")
+                    for issue in issues:
+                        print(f"File: {issue['file_name']}, Alias: {issue['bind_alias']}, Issue: {issue['bind_issue']}")
+                else:
+                    print("No bind issues found")
 
 print("\nCheck complete.")
