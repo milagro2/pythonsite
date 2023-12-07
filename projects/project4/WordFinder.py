@@ -46,4 +46,3 @@ for file_name in file_list:
                         print("Special case: manager and null")
 
 print("\nCheck complete.")
-+
