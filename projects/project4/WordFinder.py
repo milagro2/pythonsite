@@ -1,6 +1,6 @@
 import os
 
-def extract_alias_value_pairs(lines):
+def extract_alias_value_pairs(lines, contract):
     alias_value_pairs = []
     alias = None
 
@@ -24,7 +24,9 @@ for file_name in file_list:
         with open(file_path, 'r') as file:
             lines = file.readlines()
 
-            alias_value_pairs = extract_alias_value_pairs(lines)
+            contract = 'CurrentObjectBindContract'
+
+            alias_value_pairs = extract_alias_value_pairs(lines, contract)
 
             if alias_value_pairs:
                 print(f"\nAlias-Value pairs in {file_name}:")
@@ -37,4 +39,7 @@ for file_name in file_list:
                     else:
                         print("----------------alias or value is not correct----------------")
 
-print("\nCheck complete.")  
+                if contract == 'CurrentObjectBindContract':
+                    print("Special case: node and null")
+
+print("\nCheck complete.")
