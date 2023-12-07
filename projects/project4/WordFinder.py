@@ -1,9 +1,8 @@
 import os
 
-def extract_alias_value_contract_triplets(lines):
-    triplets = []
+def extract_alias_value_pairs(lines):
+    alias_value_pairs = []
     alias = None
-    value = None
     contract = None
 
     for line in lines:
@@ -11,16 +10,12 @@ def extract_alias_value_contract_triplets(lines):
             alias = line.strip(' ,"').split(':')[1].strip()
         elif 'value' in line and alias:
             value = line.strip(' ,"').split(':')[1].strip()
+            alias_value_pairs.append((alias, value, contract))
+            alias = None
         elif 'contract' in line:
             contract = line.strip(' ,"').split(':')[1].strip()
 
-        if alias and value and contract:
-            triplets.append((alias, value, contract))
-            alias = None
-            value = None
-            contract = None
-
-    return triplets
+    return alias_value_pairs
 
 folder_path = "projects/project4/TestFiles"
 file_list = os.listdir(folder_path)
@@ -32,15 +27,22 @@ for file_name in file_list:
         with open(file_path, 'r') as file:
             lines = file.readlines()
 
-            triplets = extract_alias_value_contract_triplets(lines)
+            alias_value_pairs = extract_alias_value_pairs(lines)
 
-            if triplets:
-                print(f"\nTriplets in {file_name}:")
+            if alias_value_pairs:
+                print(f"\nAlias-Value-Contract triplets in {file_name}:")
 
-                for alias, value, contract in triplets:
-                    if contract == 'ManagerBindContract':
-                        print("I'm the manager!")
+                for alias, value, contract in alias_value_pairs:
+                    print(f'alias: {alias}, value: {value}, contract: {contract}', end=' ')
+
+                    if contract == 'CurrentObjectBindContract':
+                        print("Special case: node and null")
+                    elif contract == 'ManagerBindContract':
+                        print("Special case: I'm the manager")
                     else:
-                        print(f'alias: {alias}, value: {value}, contract: {contract}')
+                        if alias == value:
+                            print("alias and value are correct")
+                        else:
+                            print("----------------alias or value is not correct----------------")
 
 print("\nCheck complete.")
