@@ -1,5 +1,4 @@
 import os
-import xml.etree.ElementTree as ET
 
 def extract_alias_value_pairs(lines):
     alias_value_pairs = []
@@ -13,19 +12,12 @@ def extract_alias_value_pairs(lines):
             alias = parts[1].strip().strip(', ')
         elif 'value' in parts[0] and alias:
             value = parts[1].strip().strip(', ')
-            contract = parts[2].strip().strip(', ')
             alias_value_pairs.append((alias, value, contract))
             alias = None
+        elif 'contract' in parts[0]:
+            contract = parts[1].strip().strip(', ')
 
     return alias_value_pairs
-
-def extract_business_function(xml_content):
-    try:
-        root = ET.fromstring(xml_content)
-        business_function = root.find('.//BusinessFunction').text
-        return business_function
-    except ET.ParseError:
-        return None
 
 folder_path = "projects/project4/TestFiles"
 file_list = os.listdir(folder_path)
@@ -50,25 +42,24 @@ for file_name in file_list:
                             print("alias and value are correct (:")
                         else:
                             print("|>|>|> alias should be 'node' <|<|<|")
-
+                        
                     elif contract == 'ManagerBindContract':
                         if alias == 'manager':
                             print("alias and value are correct (:")
                         else:
                             print("|>|>|> alias should be 'manager' <|<|<|")
-
+                            
                     elif contract == 'LoggerBindContract':
                         if alias == 'logger':
                             print("alias and value are correct (:")
                         else:
                             print("|>|>|> alias should be 'log' <|<|<|")
-
-                    elif contract == 'BusinessFunctionBindContract':
-                        business_function = extract_business_function(value)
-                        if business_function and alias == business_function:
+                    
+                    elif contract == 'WebUiContextBind':
+                        if alias == 'weebUI':
                             print("alias and value are correct (:")
                         else:
-                            print("|>|>|> alias and value are not the same <|<|<|")
+                            print("|>|>|> alias should be 'webUI' <|<|<|")
 
                     else:
                         if alias == value:
