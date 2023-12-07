@@ -41,5 +41,7 @@ for file_name in file_list:
 
                 if contract == 'CurrentObjectBindContract':
                     print("Special case: node and null")
+                elif contract == 'ManagerBindContract':
+                    print("Maaaa case: manager and null")
 
 print("\nCheck complete.")
