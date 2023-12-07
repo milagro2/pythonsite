@@ -267,29 +267,29 @@ function getNormalizedValue(value) {
 
 	// Conversion - weight
 	if (endsWith(value, "mg")) {
-		var valueNew = normalizeNumberString(getUnitValue(value) / 1000000, 3);
+		var valueNew = normalizeNumberString(getUnitValue(value) / 1000000, 2);
 		return joinParts(valueNew, "kg");
 	}
 	if (endsWith(value, " g")) {
-		var valueNew = normalizeNumberString(getUnitValue(value) / 1000, 3);
+		var valueNew = normalizeNumberString(getUnitValue(value) / 1000, 2);
 		return joinParts(valueNew, "kg");
 	}
 	if (endsWith(value, "kg")) {
-		var valueNew = normalizeNumberString(getUnitValue(value), 3);
+		var valueNew = normalizeNumberString(getUnitValue(value), 2);
 		return joinParts(valueNew, "kg");
 	}
 
 	// Conversion - volume
 	if (endsWith(value, "ml")) {
-		var valueNew = normalizeNumberString(getUnitValue(value) / 10, 3);
-		return joinParts(valueNew, "kg");
+		var valueNew = normalizeNumberString(getUnitValue(value) / 10, 2);
+		return joinParts(valueNew, "cl");
 	}
 	if (endsWith(value, "cl")) {
-		var valueNew = normalizeNumberString(getUnitValue(value), 3);
+		var valueNew = normalizeNumberString(getUnitValue(value), 2);
 		return joinParts(valueNew, "cl");
 	}
 	if (endsWith(value, " l")) {
-		var valueNew = normalizeNumberString(getUnitValue(value) * 100, 3);
+		var valueNew = normalizeNumberString(getUnitValue(value) * 100, 2);
 		return joinParts(valueNew, "cl");
 	}
 
