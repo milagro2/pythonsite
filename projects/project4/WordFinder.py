@@ -48,6 +48,13 @@ for file_name in file_list:
                             print("alias and value are correct (:")
                         else:
                             print("|>|>|> alias should be 'manager' <|<|<|")
+                            
+                    elif contract == 'LoggerBindContract':
+                        if alias == 'log':
+                            print("alias and value are correct (:")
+                        else:
+                            print("|>|>|> alias should be 'log' <|<|<|")
+
                     else:
                         if alias == value:
                             print("alias and value are correct (:")
