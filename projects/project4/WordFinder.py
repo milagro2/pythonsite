@@ -32,10 +32,10 @@ for file_name in file_list:
             alias_value_pairs = extract_alias_value_pairs(lines)
 
             if alias_value_pairs:
-                print(f"\nAlias-Value-Contract triplets in {file_name}:")
+                print(f"\nAlias and Value in {file_name}:")
 
                 for alias, value, contract in alias_value_pairs:
-                    print(f'alias: {alias}, value: {value}, contract: {contract}', end=' ')
+                    print(f'alias: {alias} -  value: {value} -  contract: {contract} - ', end=' ')
 
                     if contract == 'CurrentObjectBindContract':
                         print("Special case: node and null")
