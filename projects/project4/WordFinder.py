@@ -6,14 +6,16 @@ def extract_alias_value_pairs(lines):
     contract = None
 
     for line in lines:
-        if 'alias' in line:
-            alias = line.strip(' ,"').split(':')[1].strip()
-        elif 'value' in line and alias:
-            value = line.strip(' ,"').split(':')[1].strip()
+        line = line.replace('"', '')  # Remove extra double quotes
+        parts = line.split(':')
+        if 'alias' in parts[0]:
+            alias = parts[1].strip().strip(', ')
+        elif 'value' in parts[0] and alias:
+            value = parts[1].strip().strip(', ')
             alias_value_pairs.append((alias, value, contract))
             alias = None
-        elif 'contract' in line:
-            contract = line.strip(' ,"').split(':')[1].strip()
+        elif 'contract' in parts[0]:
+            contract = parts[1].strip().strip(', ')
 
     return alias_value_pairs
 
