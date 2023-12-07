@@ -24,7 +24,6 @@ for file_name in file_list:
         with open(file_path, 'r') as file:
             lines = file.readlines()
 
-            contract = 'CurrentObjectBindContract'
             contract = 'ManagerBindContract'
 
             alias_value_pairs = extract_alias_value_pairs(lines, contract)
@@ -35,14 +34,15 @@ for file_name in file_list:
                 for alias, value in alias_value_pairs:
                     print(f'alias: {alias}, value: {value}', end=' ')
 
-                    if alias == value:
-                        print("alias and value are correct")
+                    if contract == 'ManagerBindContract':
+                        if alias == 'manager':
+                            print("alias is correct")
+                        else:
+                            print("----------------alias should be 'manager'----------------")
                     else:
-                        print("----------------alias or value is not correct----------------")
-
-                if contract == 'CurrentObjectBindContract':
-                    print("Special case: node and null")
-                elif contract == 'ManagerBindContract':
-                    print("Maaaa case: manager and null")
+                        if alias == value:
+                            print("alias and value are correct")
+                        else:
+                            print("----------------alias or value is not correct----------------")
 
 print("\nCheck complete.")
