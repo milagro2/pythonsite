@@ -6,7 +6,7 @@ def extract_alias_value_pairs(lines):
     contract = None
 
     for line in lines:
-        line = line.replace('"', '')  # Remove extra double quotes
+        line = line.replace('"', '')
         parts = line.split(':')
         if 'alias' in parts[0]:
             alias = parts[1].strip().strip(', ')
@@ -40,7 +40,10 @@ for file_name in file_list:
                     if contract == 'CurrentObjectBindContract':
                         print("Special case: node and null")
                     elif contract == 'ManagerBindContract':
-                        print("Special case: I'm the manager")
+                        if alias == 'manager':
+                            print("Special case: I'm the manager")
+                        else:
+                            print("Special case: I'm not the manager --")
                     else:
                         if alias == value:
                             print("alias and value are correct")
