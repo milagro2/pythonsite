@@ -32,7 +32,7 @@ for file_name in file_list:
             alias_value_pairs = extract_alias_value_pairs(lines)
 
             if alias_value_pairs:
-                print(f"\nAlias and Value in {file_name}:")
+                print(f"\n- - - - - Alias and Value in {file_name}: - - - - -")
 
                 for alias, value, contract in alias_value_pairs:
                     print(f'alias: {alias} -  value: {value} -  contract: {contract} - ', end=' ')
@@ -41,17 +41,17 @@ for file_name in file_list:
                         if alias == 'node':
                             print("alias and value are correct (:")
                         else:
-                            print(">>> alias should be 'node' <<<")
+                            print("|>|>|> alias should be 'node' <|<|<|")
                         
                     elif contract == 'ManagerBindContract':
                         if alias == 'manager':
                             print("alias and value are correct (:")
                         else:
-                            print(">>> alias should be 'manager' <<<")
+                            print("|>|>|> alias should be 'manager' <|<|<|")
                     else:
                         if alias == value:
                             print("alias and value are correct (:")
                         else:
-                            print(">>> alias and value are not the same <<<")
+                            print("|>|>|> alias and value are not the same <|<|<|")
 
 print("\nCheck complete.")
