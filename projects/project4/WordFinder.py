@@ -38,9 +38,10 @@ for file_name in file_list:
                     print(f'alias: {alias} -  value: {value} -  contract: {contract} - ', end=' ')
 
                     if contract == 'CurrentObjectBindContract':
-                        print("Special case: alias and value are correct (:")
-                    else:
-                        print("Special case: alias is not node")
+                        if alias == 'node':
+                            print("Special case: alias and value are correct (:")
+                        else:
+                            print("Special case: alias is not node")
                         
                     elif contract == 'ManagerBindContract':
                         if alias == 'manager':
