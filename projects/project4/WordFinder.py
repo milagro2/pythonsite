@@ -53,7 +53,7 @@ for file_name in file_list:
                         if alias == 'logger':
                             print("alias and value are correct (:")
                         else:
-                            print("|>|>|> alias should be 'log' <|<|<|")
+                            print("|>|>|> alias should be 'logger' <|<|<|")
                     
                     elif contract == 'WebUiContextBind':
                         if alias == 'weebUI':
