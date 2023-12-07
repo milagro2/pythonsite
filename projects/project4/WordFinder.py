@@ -1,9 +1,8 @@
 import os
 
-def extract_alias_value_contract_triplets(lines):
-    alias_value_contract_triplets = []
+def extract_alias_value_pairs(lines):
+    alias_value_pairs = []
     alias = None
-    value = None
     contract = None
 
     for line in lines:
@@ -11,15 +10,12 @@ def extract_alias_value_contract_triplets(lines):
             alias = line.strip(' ,"').split(':')[1].strip()
         elif 'value' in line and alias:
             value = line.strip(' ,"').split(':')[1].strip()
-        elif 'contract' in line and alias and value:
+            alias_value_pairs.append((alias, value, contract))
+            alias = None
+        elif 'contract' in line:
             contract = line.strip(' ,"').split(':')[1].strip()
 
-            alias_value_contract_triplets.append((alias, value, contract))
-            alias = None
-            value = None
-            contract = None
-
-    return alias_value_contract_triplets
+    return alias_value_pairs
 
 folder_path = "projects/project4/TestFiles"
 file_list = os.listdir(folder_path)
@@ -31,12 +27,12 @@ for file_name in file_list:
         with open(file_path, 'r') as file:
             lines = file.readlines()
 
-            alias_value_contract_triplets = extract_alias_value_contract_triplets(lines)
+            alias_value_pairs = extract_alias_value_pairs(lines)
 
-            if alias_value_contract_triplets:
+            if alias_value_pairs:
                 print(f"\nAlias-Value-Contract triplets in {file_name}:")
 
-                for alias, value, contract in alias_value_contract_triplets:
+                for alias, value, contract in alias_value_pairs:
                     print(f'alias: {alias}, value: {value}, contract: {contract}', end=' ')
 
                     if alias == value:
@@ -50,3 +46,4 @@ for file_name in file_list:
                         print("Special case: manager and null")
 
 print("\nCheck complete.")
++
