@@ -27,7 +27,7 @@
   "pluginId" : "JavaScriptBusinessActionWithBinds",
   "binds" : [ {
     "contract" : "ManagerBindContract",
-    "alias" : "manager",
+    "alias" : "managertest",
     "parameterClass" : "null",
     "value" : null,
     "description" : null
