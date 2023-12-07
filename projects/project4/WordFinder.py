@@ -25,6 +25,7 @@ for file_name in file_list:
             lines = file.readlines()
 
             contract = 'CurrentObjectBindContract'
+            contract = 'ManagerBindContract'
 
             alias_value_pairs = extract_alias_value_pairs(lines, contract)
 
