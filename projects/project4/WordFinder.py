@@ -31,7 +31,9 @@ for file_name in file_list:
                         print("alias and value are correct")
                     else:
                         print("----------------alias or value is not correct----------------")
+
                 if contract == 'CurrentObjectBindContract':
                     print("Special case: node and null")
+
                 elif contract == 'ManagerBindContract':
                     print("Maaaa case: manager and null")
