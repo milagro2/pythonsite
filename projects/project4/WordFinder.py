@@ -50,7 +50,7 @@ for file_name in file_list:
                             print("|>|>|> alias should be 'manager' <|<|<|")
                             
                     elif contract == 'LoggerBindContract':
-                        if alias == 'log':
+                        if alias == 'logger':
                             print("alias and value are correct (:")
                         else:
                             print("|>|>|> alias should be 'log' <|<|<|")
