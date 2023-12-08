@@ -34,37 +34,35 @@ for file_name in file_list:
             if alias_value_pairs:
                 print(f"\n- - - - - Alias and Value in {file_name}: - - - - -")
 
+                error_found = False  # Initialize error flag
+
                 for alias, value, contract in alias_value_pairs:
                     print(f'alias: {alias} -  value: {value} -  contract: {contract} - ', end=' ')
 
                     if contract == 'CurrentObjectBindContract':
-                        if alias == 'node':
-                            print("alias and value are correct (:")
-                        else:
+                        if alias != 'node':
                             print("|>|>|> alias should be 'node' <|<|<|")
-                        
+                            error_found = True
                     elif contract == 'ManagerBindContract':
-                        if alias == 'manager':
-                            print("alias and value are correct (:")
-                        else:
+                        if alias != 'manager':
                             print("|>|>|> alias should be 'manager' <|<|<|")
-                            
+                            error_found = True
                     elif contract == 'LoggerBindContract':
-                        if alias == 'logger':
-                            print("alias and value are correct (:")
-                        else:
+                        if alias != 'logger':
                             print("|>|>|> alias should be 'logger' <|<|<|")
-                    
+                            error_found = True
                     elif contract == 'WebUiContextBind':
-                        if alias == 'weebUI':
-                            print("alias and value are correct (:")
-                        else:
+                        if alias != 'webUI':
                             print("|>|>|> alias should be 'webUI' <|<|<|")
-
+                            error_found = True
                     else:
-                        if alias == value:
-                            print("alias and value are correct (:")
-                        else:
+                        if alias != value:
                             print("|>|>|> alias and value are not the same <|<|<|")
+                            error_found = True
+
+                if not error_found:
+                    print("alias and value are correct (:")
+                else:
+                    print("alias and value are not correct everywhere")
 
 print("\nCheck complete.")
