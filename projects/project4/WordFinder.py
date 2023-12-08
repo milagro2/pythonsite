@@ -1,4 +1,5 @@
 import os
+import sys
 
 def extract_alias_value_pairs(lines):
     alias_value_pairs = []
@@ -45,29 +46,34 @@ for file_name in file_list:
                             print("alias and value are correct (:")
                         else:
                             print_error("|>|>|> Error: alias should be 'node' <|<|<|")
+                            sys.exit(1)
                         
                     elif contract == 'ManagerBindContract':
                         if alias == 'manager':
                             print("alias and value are correct (:")
                         else:
                             print_error("|>|>|> Error: alias should be 'manager' <|<|<|")
+                            sys.exit(1)
                             
                     elif contract == 'LoggerBindContract':
                         if alias == 'logger':
                             print("alias and value are correct (:")
                         else:
                             print_error("|>|>|> Error: alias should be 'logger' <|<|<|")
+                            sys.exit(1)
                     
                     elif contract == 'WebUiContextBind':
                         if alias == 'webUI':
                             print("alias and value are correct (:")
                         else:
                             print_error("|>|>|> Error: alias should be 'webUI' <|<|<|")
+                            sys.exit(1)
 
                     else:
                         if alias == value:
                             print("alias and value are correct (:")
                         else:
                             print_error("|>|>|> Error: alias and value are not the same <|<|<|")
+                            sys.exit(1)
 
 print("\nCheck complete.")
