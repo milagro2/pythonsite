@@ -25,6 +25,7 @@ def print_error(message):
 
 folder_path = "projects/project4/TestFiles"
 file_list = os.listdir(folder_path)
+errors = []
 
 for file_name in file_list:
     file_path = os.path.join(folder_path, file_name)
@@ -42,38 +43,29 @@ for file_name in file_list:
                     print(f'alias: {alias} -  value: {value} -  contract: {contract} - ', end=' ')
 
                     if contract == 'CurrentObjectBindContract':
-                        if alias == 'node':
-                            print("alias and value are correct (:")
-                        else:
-                            print_error("|>|>|> Error: alias should be 'node' <|<|<|")
-                            sys.exit(1)
+                        if alias != 'node':
+                            errors.append(f"|>|>|> Error in {file_name}: alias should be 'node' <|<|<|")
                         
                     elif contract == 'ManagerBindContract':
-                        if alias == 'manager':
-                            print("alias and value are correct (:")
-                        else:
-                            print_error("|>|>|> Error: alias should be 'manager' <|<|<|")
-                            sys.exit(1)
+                        if alias != 'manager':
+                            errors.append(f"|>|>|> Error in {file_name}: alias should be 'manager' <|<|<|")
                             
                     elif contract == 'LoggerBindContract':
-                        if alias == 'logger':
-                            print("alias and value are correct (:")
-                        else:
-                            print_error("|>|>|> Error: alias should be 'logger' <|<|<|")
-                            sys.exit(1)
+                        if alias != 'logger':
+                            errors.append(f"|>|>|> Error in {file_name}: alias should be 'logger' <|<|<|")
                     
                     elif contract == 'WebUiContextBind':
-                        if alias == 'webUI':
-                            print("alias and value are correct (:")
-                        else:
-                            print_error("|>|>|> Error: alias should be 'webUI' <|<|<|")
-                            sys.exit(1)
+                        if alias != 'webUI':
+                            errors.append(f"|>|>|> Error in {file_name}: alias should be 'webUI' <|<|<|")
 
                     else:
-                        if alias == value:
-                            print("alias and value are correct (:")
-                        else:
-                            print_error("|>|>|> Error: alias and value are not the same <|<|<|")
-                            sys.exit(1)
+                        if alias != value:
+                            errors.append(f"|>|>|> Error in {file_name}: alias and value are not the same <|<|<|")
+
+if errors:
+    print("\n- - - - - Errors - - - - -")
+    for error in errors:
+        print_error(error)
+    sys.exit(1)
 
 print("\nCheck complete.")
