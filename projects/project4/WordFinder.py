@@ -19,6 +19,9 @@ def extract_alias_value_pairs(lines):
 
     return alias_value_pairs
 
+def print_error(message):
+    print("\033[91m" + message + "\033[0m")
+
 folder_path = "projects/project4/TestFiles"
 file_list = os.listdir(folder_path)
 
@@ -34,35 +37,36 @@ for file_name in file_list:
             if alias_value_pairs:
                 print(f"\n- - - - - Alias and Value in {file_name}: - - - - -")
 
-                error_found = False  # Initialize error flag
+                error_flag = False  # Flag to check if any errors occurred
 
                 for alias, value, contract in alias_value_pairs:
                     print(f'alias: {alias} -  value: {value} -  contract: {contract} - ', end=' ')
 
                     if contract == 'CurrentObjectBindContract':
                         if alias != 'node':
-                            print("|>|>|> alias should be 'node' <|<|<|")
-                            error_found = True
+                            print_error("|>|>|> alias should be 'node' <|<|<|")
+                            error_flag = True
+                        
                     elif contract == 'ManagerBindContract':
                         if alias != 'manager':
-                            print("|>|>|> alias should be 'manager' <|<|<|")
-                            error_found = True
+                            print_error("|>|>|> alias should be 'manager' <|<|<|")
+                            error_flag = True
+                            
                     elif contract == 'LoggerBindContract':
                         if alias != 'logger':
-                            print("|>|>|> alias should be 'logger' <|<|<|")
-                            error_found = True
+                            print_error("|>|>|> alias should be 'logger' <|<|<|")
+                            error_flag = True
+                    
                     elif contract == 'WebUiContextBind':
-                        if alias != 'webUI':
-                            print("|>|>|> alias should be 'webUI' <|<|<|")
-                            error_found = True
-                    else:
-                        if alias != value:
-                            print("|>|>|> alias and value are not the same <|<|<|")
-                            error_found = True
+                        if alias != 'weebUI':
+                            print_error("|>|>|> alias should be 'webUI' <|<|<|")
+                            error_flag = True
 
-                if not error_found:
-                    print("alias and value are correct (:")
-                else:
-                    print("alias and value are not correct everywhere")
+                    else:
+                        print_error("|>|>|> alias and value are not correct everywhere <|<|<|")
+                        error_flag = True
+
+                if error_flag:
+                    print_error("Error: alias and value are not correct in the file.")
 
 print("\nCheck complete.")
