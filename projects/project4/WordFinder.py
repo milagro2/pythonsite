@@ -82,7 +82,7 @@ for file_name in file_list:
                         if alias in value:
                             print("alias and value are correct (:")
                         else:
-                            print_error("|>|>|> Error: value might be the same but I have to write something for that <|<|<|")
+                            print_error("|>|>|> Error: alias and value are not the same <|<|<|")
                             error_found = True
 
                     else:
