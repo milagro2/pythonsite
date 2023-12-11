@@ -38,7 +38,7 @@
     "contract" : "BusinessFunctionBindContract",
     "alias" : "bf_GetAllObjectsForAnArticle",
     "parameterClass" : "com.stibo.core.domain.impl.businessrule.function.javascript.reference.BusinessFunctionReferenceImpl",
-    "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<BusinessFunctionReference>\n  <BusinessFunction>bf_GetAllObjectsForAnArticle</BusinessFunction>\n</BusinessFunctionReference>\n",
+    "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<BusinessFunctionReference>\n  <BusinessFunction>bf_TESTGetAllObjectsForAnArticle</BusinessFunction>\n</BusinessFunctionReference>\n",
     "description" : null
   }, {
     "contract" : "BusinessFunctionBindContract",
