@@ -1,4 +1,4 @@
- import os
+import os
 
 def extract_alias_value_pairs(lines):
     alias_value_pairs = []
