@@ -1,4 +1,5 @@
 import os
+import sys
 
 def extract_alias_value_pairs(lines):
     alias_value_pairs = []
@@ -25,6 +26,8 @@ def print_error(message):
 folder_path = "projects/project4/TestFiles"
 file_list = os.listdir(folder_path)
 
+error_found = False
+
 for file_name in file_list:
     file_path = os.path.join(folder_path, file_name)
 
@@ -45,29 +48,37 @@ for file_name in file_list:
                             print("alias and value are correct (:")
                         else:
                             print_error("|>|>|> Error: alias should be 'node' <|<|<|")
+                            error_found = True
                         
                     elif contract == 'ManagerBindContract':
                         if alias == 'manager':
                             print("alias and value are correct (:")
                         else:
                             print_error("|>|>|> Error: alias should be 'manager' <|<|<|")
+                            error_found = True
                             
                     elif contract == 'LoggerBindContract':
                         if alias == 'logger':
                             print("alias and value are correct (:")
                         else:
                             print_error("|>|>|> Error: alias should be 'logger' <|<|<|")
+                            error_found = True
                     
                     elif contract == 'WebUiContextBind':
                         if alias == 'webUI':
                             print("alias and value are correct (:")
                         else:
                             print_error("|>|>|> Error: alias should be 'webUI' <|<|<|")
+                            error_found = True
 
                     else:
                         if alias == value:
                             print("alias and value are correct (:")
                         else:
                             print_error("|>|>|> Error: alias and value are not the same <|<|<|")
+                            error_found = True
+
+if error_found:
+    sys.exit(1)
 
 print("\nCheck complete.")
