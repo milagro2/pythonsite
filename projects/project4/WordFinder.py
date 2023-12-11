@@ -71,12 +71,11 @@ for file_name in file_list:
                             print_error("|>|>|> Error: alias should be 'webUI' <|<|<|")
                             error_found = True
                     
-                    elif contract == 'BusinessFunctionBindContract':
-                            expected_value = f'<?xml version="1.0" encoding="UTF-8"?>\n<BusinessFunctionReference>\n  <BusinessFunction>{alias}</BusinessFunction>\n</BusinessFunctionReference>\n'
-                        if value.startswith(expected_value):
-                            print("alias and value are correct (:")
+                     elif contract == 'BusinessFunctionBindContract':
+                        if value == '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<BusinessFunctionReference>\n  <BusinessFunction>bf_GetDimensionAttributesFromGroup</BusinessFunction>\n</BusinessFunctionReference>\n':
+                            print("alias and value are correct ------------------------------------------------------------(:")
                         else:
-                            print_error("|>|>|> Error: alias should start with the specified value <|<|<|")
+                            print_error("|>|>|> Error: value might be the same but I have to write something for that <|<|<|")
                             error_found = True
 
                     else:
