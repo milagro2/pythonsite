@@ -38,21 +38,10 @@
     "contract" : "BusinessFunctionBindContract",
     "alias" : "bf_GetAllObjectsForAnArticle",
     "parameterClass" : "com.stibo.core.domain.impl.businessrule.function.javascript.reference.BusinessFunctionReferenceImpl",
-    "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<BusinessFunctionReference>\n  <BusinessFunction>bf_TESTGetAllObjectsForAnArticle</BusinessFunction>\n</BusinessFunctionReference>\n",
+    "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<BusinessFunctionReference>\n  <BusinessFunction>bf_GetAllObjectsForAnArticle</BusinessFunction>\n</BusinessFunctionReference>\n",
     "description" : null
   }, {
     "contract" : "BusinessFunctionBindContract",
-
-    
-          
-            
-    
-
-          
-          Expand Down
-    
-    
-  
     "alias" : "bf_GetCOSMOSMissingMandatoryAttributes",
     "parameterClass" : "com.stibo.core.domain.impl.businessrule.function.javascript.reference.BusinessFunctionReferenceImpl",
     "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<BusinessFunctionReference>\n  <BusinessFunction>bf_GetCOSMOSMissingMandatoryAttributes</BusinessFunction>\n</BusinessFunctionReference>\n",
@@ -125,11 +114,13 @@ exports.operation0 = function (node,bc_IsCOSMOSMandatoryInfoCompleted,bf_GetAllO
  *
  */
 var allObjects = [];
+
 if (prd_BundleArticle.getID() == node.getObjectType().getID()) {
 	allObjects.push(node);
 } else {
 	allObjects = bf_GetAllObjectsForAnArticle.evaluate({node: node}).toArray();
 }
+
 var completeResult ='';
 var completeResultNode ='';
 var completeResultAward ='';
@@ -156,6 +147,7 @@ if (isNodeComplete.isRejected() || isNodeComplete.isNonApplicable()) {
 	missingList = bf_GetCOSMOSMissingMandatoryAttributes.evaluate({node: node});
 	completeResultNode = completeResultNode +'<br/>'+node.getID()+' '+node.getName()+' is niet compleet. De volgende informatie mist:'+'<br/>'+missingList+'<br/>';
 }
+
 //Check if all mandatory attributes on the reference have been populated
 var referencesAwards = node.queryReferences(ref_Awards).asList(10);
 if (referencesAwards.size()>0) {
@@ -193,6 +185,7 @@ if (!completeResult && !completeResultNode && !completeResultGoodsSupplier && !c
   "pluginType" : "Operation"
 }
 */
+
 /*===== business rule plugin definition =====
 {
   "pluginId" : "ReferenceOtherBCBusinessCondition",
@@ -208,6 +201,7 @@ if (!completeResult && !completeResultNode && !completeResultGoodsSupplier && !c
   "pluginType" : "Operation"
 }
 */
+
 /*===== business rule plugin definition =====
 {
   "pluginId" : "ReferenceOtherBCBusinessCondition",
@@ -223,6 +217,7 @@ if (!completeResult && !completeResultNode && !completeResultGoodsSupplier && !c
   "pluginType" : "Operation"
 }
 */
+
 /*===== business rule plugin definition =====
 {
   "pluginId" : "ReferenceOtherBCBusinessCondition",
