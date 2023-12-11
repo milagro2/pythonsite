@@ -72,10 +72,11 @@ for file_name in file_list:
                             error_found = True
                     
                     elif contract == 'BusinessFunctionBindContract':
-                        if alias == 'a':
+                            expected_value = f'<?xml version="1.0" encoding="UTF-8"?>\n<BusinessFunctionReference>\n  <BusinessFunction>{alias}</BusinessFunction>\n</BusinessFunctionReference>\n'
+                        if value.startswith(expected_value):
                             print("alias and value are correct (:")
                         else:
-                            print_error("|>|>|> Error: value might be the same but I have to write something for that <|<|<|")
+                            print_error("|>|>|> Error: alias should start with the specified value <|<|<|")
                             error_found = True
 
                     else:
