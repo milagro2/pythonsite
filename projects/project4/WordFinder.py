@@ -72,10 +72,10 @@ for file_name in file_list:
                             error_found = True
                     
                     elif contract == 'BusinessFunctionBindContract':
-                        if alias.startswith(value):
+                        if alias == 'a':
                             print("alias and value are correct (:")
                         else:
-                            print_error("|>|>|> Error: alias should start with the specified value <|<|<|")
+                            print_error("|>|>|> Error: value might be the same but I have to write something for that <|<|<|")
                             error_found = True
 
                     else:
