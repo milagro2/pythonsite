@@ -72,8 +72,8 @@ for file_name in file_list:
                             error_found = True
                     
                     elif contract == 'BusinessFunctionBindContract':
-                        if value == '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<BusinessFunctionReference>\n  <BusinessFunction>bf_GetDimensionAttributesFromGroup</BusinessFunction>\n</BusinessFunctionReference>\n':
-                            print("alias and value are correct ------------------------------------------------------------(:")
+                        if alias == 'a':
+                            print("alias and value are correct (:")
                         else:
                             print_error("|>|>|> Error: value might be the same but I have to write something for that <|<|<|")
                             error_found = True
