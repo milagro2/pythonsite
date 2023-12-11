@@ -77,8 +77,8 @@ for file_name in file_list:
                         else:
                             print_error("|>|>|> Error: alias should be 'webUI' <|<|<|")
                             error_found = True
-                            
-                    elif contract == 'CurrentWorkflowBindContract ':
+ 
+                    elif contract == 'CurrentWorkflowBindContract':
                         if alias == 'workflow':
                             print("alias and value are correct (:")
                         else:
