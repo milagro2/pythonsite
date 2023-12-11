@@ -49,6 +49,13 @@ for file_name in file_list:
                         else:
                             print_error("|>|>|> Error: alias should be 'node' <|<|<|")
                             error_found = True
+                            
+                    elif contract == 'NodeBindContract':
+                        if alias == 'node':
+                            print("alias and value are correct (:")
+                        else:
+                            print_error("|>|>|> Error: alias should be 'node' <|<|<|")
+                            error_found = True
                         
                     elif contract == 'ManagerBindContract':
                         if alias == 'manager':
