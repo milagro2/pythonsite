@@ -9,15 +9,14 @@ def extract_alias_value_pairs(lines):
     for line in lines:
         line = line.replace('"', '')
         parts = line.split(':')
-
         if 'alias' in parts[0]:
-            alias = parts[1].strip().strip(', ') if len(parts) > 1 else None
+            alias = parts[1].strip().strip(', ')
         elif 'value' in parts[0] and alias:
-            value = parts[1].strip().strip(', ') if len(parts) > 1 else None
+            value = parts[1].strip().strip(', ')
             alias_value_pairs.append((alias, value, contract))
             alias = None
         elif 'contract' in parts[0]:
-            contract = parts[1].strip().strip(', ') if len(parts) > 1 else None
+            contract = parts[1].strip().strip(', ')
 
     return alias_value_pairs
 
@@ -27,7 +26,7 @@ def print_error(message):
 folder_path = "projects/project4/TestFiles"
 file_list = os.listdir(folder_path)
 
-error_found = False
+error_occurred = False
 
 for file_name in file_list:
     file_path = os.path.join(folder_path, file_name)
@@ -49,37 +48,37 @@ for file_name in file_list:
                             print("alias and value are correct (:")
                         else:
                             print_error("|>|>|> Error: alias should be 'node' <|<|<|")
-                            error_found = True
+                            error_occurred = True
                         
                     elif contract == 'ManagerBindContract':
                         if alias == 'manager':
                             print("alias and value are correct (:")
                         else:
                             print_error("|>|>|> Error: alias should be 'manager' <|<|<|")
-                            error_found = True
+                            error_occurred = True
                             
                     elif contract == 'LoggerBindContract':
                         if alias == 'logger':
                             print("alias and value are correct (:")
                         else:
                             print_error("|>|>|> Error: alias should be 'logger' <|<|<|")
-                            error_found = True
+                            error_occurred = True
                     
                     elif contract == 'WebUiContextBind':
                         if alias == 'webUI':
                             print("alias and value are correct (:")
                         else:
                             print_error("|>|>|> Error: alias should be 'webUI' <|<|<|")
-                            error_found = True
+                            error_occurred = True
 
                     else:
                         if alias == value:
                             print("alias and value are correct (:")
                         else:
                             print_error("|>|>|> Error: alias and value are not the same <|<|<|")
-                            error_found = True
+                            error_occurred = True
 
-if error_found:
+if error_occurred:
     sys.exit(1)
 
 print("\nCheck complete.")
