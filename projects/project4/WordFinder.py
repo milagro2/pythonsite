@@ -72,7 +72,7 @@ for file_name in file_list:
                             error_found = True
                     
                     elif contract == 'BusinessFunctionBindContract':
-                        if alias == 'a':
+                        if alias in value:
                             print("alias and value are correct (:")
                         else:
                             print_error("|>|>|> Error: value might be the same but I have to write something for that <|<|<|")
