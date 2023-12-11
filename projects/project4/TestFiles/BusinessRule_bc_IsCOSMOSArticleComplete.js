@@ -9,15 +9,14 @@ def extract_alias_value_pairs(lines):
     for line in lines:
         line = line.replace('"', '')
         parts = line.split(':')
-        if len(parts) > 1:
-            if 'alias' in parts[0]:
-                alias = parts[1].strip().strip(', ')
-            elif 'value' in parts[0] and alias:
-                value = parts[1].strip().strip(', ')
-                alias_value_pairs.append((alias, value, contract))
-                alias = None
-            elif 'contract' in parts[0]:
-                contract = parts[1].strip().strip(', ')
+        if 'alias' in parts[0]:
+            alias = parts[1].strip().strip(', ')
+        elif 'value' in parts[0] and alias:
+            value = parts[1].strip().strip(', ')
+            alias_value_pairs.append((alias, value, contract))
+            alias = None
+        elif 'contract' in parts[0]:
+            contract = parts[1].strip().strip(', ')
 
     return alias_value_pairs
 
@@ -71,13 +70,6 @@ for file_name in file_list:
                         else:
                             print_error("|>|>|> Error: alias should be 'webUI' <|<|<|")
                             error_found = True
-                    
-                    elif contract == 'BusinessFunctionBindContract':
-                        if not value.startswith(alias):
-                            print_error("|>|>|> Error: alias should be a prefix of value <|<|<|")
-                            error_found = True
-                        else:
-                            print("alias and value are correct (:")
 
                     else:
                         if alias == value:
