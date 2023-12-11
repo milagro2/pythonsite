@@ -71,7 +71,7 @@ for file_name in file_list:
                             print_error("|>|>|> Error: alias should be 'webUI' <|<|<|")
                             error_found = True
                     
-                     elif contract == 'BusinessFunctionBindContract':
+                    elif contract == 'BusinessFunctionBindContract':
                         if value == '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<BusinessFunctionReference>\n  <BusinessFunction>bf_GetDimensionAttributesFromGroup</BusinessFunction>\n</BusinessFunctionReference>\n':
                             print("alias and value are correct ------------------------------------------------------------(:")
                         else:
