@@ -9,13 +9,13 @@ def extract_alias_value_pairs(lines):
     for line in lines:
         line = line.replace('"', '')
         parts = line.split(':')
-        if 'alias' in parts[0]:
+        if 'alias' in parts[0] and len(parts) > 1:
             alias = parts[1].strip().strip(', ')
-        elif 'value' in parts[0] and alias:
+        elif 'value' in parts[0] and alias and len(parts) > 1:
             value = parts[1].strip().strip(', ')
             alias_value_pairs.append((alias, value, contract))
             alias = None
-        elif 'contract' in parts[0]:
+        elif 'contract' in parts[0] and len(parts) > 1:
             contract = parts[1].strip().strip(', ')
 
     return alias_value_pairs
