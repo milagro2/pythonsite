@@ -4,9 +4,9 @@ In project 4 I wrote a python script that reads the JSON Objects from all the fi
 
 ---
 
-| The code to check the filenames | The result, sorted filenames |
+| The code to check the variables | The result, checked variables |
 | :--------------: | :---------------: |
-| ![Filenamechecker](img/variache1.png) | ![FilenamesSorted](img/variablechecked.png) ![FilenamesSorted](img/variableschecked2.png) ![FilenamesSorted](img/variableschecked3.png) |
+| ![variablechecker](img/variache1.png) | ![checkresult](img/variablechecked.png) ![checkresult](img/variableschecked2.png) ![checkresult](img/variableschecked3.png) |
 
 
 
