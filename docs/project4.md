@@ -4,10 +4,14 @@ In project 4 I wrote a python script that reads the JSON Objects from all the fi
 
 ---
 
-| The code to check the variables | The result, variables checked |
-| :------------------------------: | :---------------------------: |
-| <img src="img/variache1.png" width="400"> | <img src="img/variablechecked.png" width="400"> <img src="img/variableschecked2.png" width="400">|
+| The code to check the filenames | The result, sorted filenames |
+| :--------------: | :---------------: |
+| ![Filenamechecker](img/variache1.png) | ![FilenamesSorted](img/variablechecked.png) ![FilenamesSorted](img/variableschecked2.png) |
 
+
+| The code to check the filenames | The result, sorted filenames |
+| :-----------------------------: | :--------------------------: |
+| ![Filenamechecker](img/variache1.png) | <img src="img/variablechecked.png" width="700"> <img src="img/variableschecked2.png" width="700"> |
 
 
 
