@@ -6,7 +6,7 @@ In project 4 I wrote a python script that reads the JSON Objects from all the fi
 
 | The code to check the variables | The result, variables checked |
 | :------------------------------: | :---------------------------: |
-| <img src="img/variache1.png" width="400"> | <img src="img/variablechecked.png" width="400"> |
+| <img src="img/variache1.png" width="400"> | <img src="img/variablechecked.png" width="400"> <img src="img/variableschecked2.png" width="400">|
 
 
 
