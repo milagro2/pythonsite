@@ -26,6 +26,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://pythonprojects.com/project5/</loc>
+         <lastmod>2023-12-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://pythonprojects.com/projects/</loc>
          <lastmod>2023-12-14</lastmod>
          <changefreq>daily</changefreq>
