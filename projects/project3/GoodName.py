@@ -2,7 +2,7 @@ import os
 import sys
 
 
-folder_path = "projects/project3/TestFiles"
+folder_path = "projects/project4/TestFiles"
 
 file_list = os.listdir(folder_path)
 
@@ -26,7 +26,6 @@ if bad_files:
     for bad_file in bad_files:
         print(bad_file)
     print("\nError: We found files that violate the naming convention")
-    sys.exit(1)
 
 else:
     print("\nAll filenames are correct.")

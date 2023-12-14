@@ -362,13 +362,13 @@ if (packaging_count > 0){
 exports.precondition1 = function (manager) {
 // Used to do partial approval of certain sets of data without triggering the approval of the zero stock workflow.
 // Put in comments after usage.
-
-var user = manager.getCurrentUser().getID();
-
-if (user.equals("PNL0P78W")) {
-	return false;
-}
-
-
+//
+//var user = manager.getCurrentUser().getID();
+//
+//if (user.equals("PNL11973")) {
+//	return false;
+//}
+//
+//
 return true;
 }

@@ -153,13 +153,7 @@ while (itr.hasNext()) {
 				try {
 					assetDownloadHome.downloadAssetContent (referencedAsset,new java.net.URL(url));
 				} catch (error) {
-					logger.info(error.message)
-					try {
-						referencedAsset.getValue(att_AssetDownloadError.getID()).setSimpleValue(htmlencode(error.message));
-					} catch (error) {
-						logger.info(error.message)
-					}
-					
+					referencedAsset.getValue(att_AssetDownloadError.getID()).setSimpleValue(htmlencode(error.message));
 					logger.info ('Error found while downloading asset content: ' + error.message);
 				}
 			} else {
