@@ -8,8 +8,7 @@ permissions:
 on:
   push:
     branches:
-      - project4-variablechecker
-# dont forget to change /\ to master when merged (;
+      - master
 
 jobs:
   update_docs:
