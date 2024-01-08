@@ -8,6 +8,7 @@ nav:
       - Project 2 - Python site with MkDocs: project2.md
       - Project 3 - File name convention checker: project3.md
       - Project 4 - Variable name convention checker: project4.md
+      - Project 5 - Age verification with fastAPI: project5.md
 
 theme:
   name: material
