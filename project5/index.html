@@ -18,7 +18,7 @@
     
     
       
-        <title>Project 5 - age checker with fastAPI - Python Projects</title>
+        <title>Project 5 - Age verification with fastAPI - Python Projects</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#project-5-age-checker-with-fastapi" class="md-skip">
+        <a href="#project-5-age-verification-with-fastapi" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Project 5 - age checker with fastAPI
+              Project 5 - Age verification with fastAPI
             
           </span>
         </div>
@@ -383,8 +383,25 @@
                   
 
 
-<h1 id="project-5-age-checker-with-fastapi">Project 5 - age checker with fastAPI</h1>
-<p>Here I made something to check if a person is really 18 years or older.</p>
+<h1 id="project-5-age-verification-with-fastapi">Project 5 - Age verification with fastAPI</h1>
+<p>For project 5 the plan was to make an application that where you can upload an image to and than it checks if the person is 18 years or older.</p>
+<hr />
+<p>The first thing I did was to learn more about <code>Docker</code> and how to use it. For that I used this <a href="https://www.docker.com/resources/what-container/">link</a>.
+<br>
+Than I leaned a bit about how to use <code>fastAPI</code> using this <a href="https://fastapi.tiangolo.com/tutorial/first-steps/">tutorial</a>. And I added an endpoint, the code looks like this in Python:</p>
+<pre><code class="language-Python">from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get(&quot;/&quot;)
+def read_root():
+    return {&quot;message&quot;: &quot;Hello, World!&quot;}
+
+@app.get(&quot;/hello&quot;)
+def read_hello():
+    return {&quot;message&quot;: &quot;Hello!&quot;}
+</code></pre>
+<p>I also used this <a href="https://medium.com/@alidu143/containerizing-fastapi-app-with-docker-a-comprehensive-guide-416521b2457c">tutorial</a> to learn more about fastAPI, but also how to create a dockerfile, an image and a container in Docker.</p>
 
 
 
