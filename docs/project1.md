@@ -27,4 +27,4 @@ git commit -m "Add Moreno  to Contributors list"
 git push -u origin ContBranch
 ```
 After that I went to the repo, clicked on the `Pull request`, then on the `Compare and pull request` button and finaly on the `Create pull request` to submit it all. <br>
-Now the changes should get merged into the main branch.
+Then the changes got merged into the main branch. This is what the [pull request](https://github.com/firstcontributions/first-contributions/pull/77226) looks like.
