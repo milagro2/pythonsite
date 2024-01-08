@@ -57,6 +57,7 @@ And to run it I used this command, which also creates a container:
 ```Python
 docker run -p 8000:8000 fastapi-hello-world
 ```
-After this I created a repository in Github where I added the Python code.
+After this I created a repository in GitHub where I added the Python code. I than learned about `Railway` which is an application that makes it easy to host websites and 
+integrate workflows. First I linked my GitHub account to Railway, than I clicked on 'new' and than 'GitHub repo' and clicked on the repo with the fastAPI project. This deployed the repo into Railway. 
 
 
