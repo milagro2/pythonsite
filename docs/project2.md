@@ -26,8 +26,10 @@ nav:
       - Project 2 - Python site with MkDocs: project2.md
       - Project 3 - File name convention checker: project3.md
       - Project 4 - Variable name convention checker: project4.md
+      - Project 5 - Age verification with fastAPI: project5.md
 
-theme: material
+theme:
+  name: material
 ```
 Its easy to add pages and sub-pages in the nav. <br>
 For the theme I first put this command in the terminal:
