@@ -9,4 +9,4 @@ In project 1 I learned how to make a pull request which was my first contributio
 | Project 1 | Project 2 | Project 3 | Project 4 | Project 5 |
 | :--------------: | :---------------: | :---------------: | :---------------: | :---------------: |
 | This is what it looks like when its approved and merged | - | - | - | - |
-| ![Github Contribution](img/contri2.png) | ![FilenamesSorted](img/contri2.png) | | | |
+| ![Github Contribution](img/contri2.png) | ![FilenamesSorted](img/contri2.png) | ![Github Contribution](img/contri2.png) | ![FilenamesSorted](img/contri2.png) | ![FilenamesSorted](img/contri2.png) |
