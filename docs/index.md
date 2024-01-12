@@ -30,4 +30,4 @@ In project 4 I wrote a script that takes the JSON Objects from all the files and
 In the last one, project 5 I learned a lot about fastAPI in Python, Docker and Railway. I created something that can take a image, check for faces and than verify the age of that person. This is the result:
 <br>
 
-[Age verify](img/facerecon.png)
+![Age verify](img/facerecon.png)
