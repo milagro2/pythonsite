@@ -7,6 +7,12 @@ We worked on a couple different projects.
 In project 1 I learned how to make a pull request which was my first contribution. I also learned more about GitHub in general. This is what it looks like when its approved and merged:
 <br>
 ![Github Contribution](img/contri2.png) 
+
 <br>
-In project 2 I learned how to make this website using MkDocs in Python
-![MkDocs](img/proj2.png) 
+In project 2 I learned how to make this website using MkDocs in Python. This is what the mkdocs.yml (the structure of the website) looks like:
+<br>
+
+![MkDocs](img/proj2.png)
+
+<br>
+In project 3
