@@ -15,4 +15,15 @@ In project 2 I learned how to make this website using MkDocs in Python. This is 
 ![MkDocs](img/proj2.png)
 
 <br>
-In project 3
+In project 3 wrote a script that checks all the files in a folder and than tells if the names are written correct or not. This is what the script looks like:
+<br>
+
+![Filenamechecker](img/NameCheckCode.png)
+
+<br>
+In project 4 I wrote a script that takes the JSON Objects from all the files and than shows if all the variables are defined correctly or not. This is what the script looks like:
+<br>
+
+![variablechecker](img/variache1.png)
+
+<br>
