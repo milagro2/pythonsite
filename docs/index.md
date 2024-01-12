@@ -4,9 +4,9 @@ During my internship I worked togheter with Petrus Jacobus van der Walt (Kobus).
 We worked on a couple different projects.
 
 ---
-In project 1 I learned how to make a pull request which was my first contribution. I also learned more about GitHub in general.
+In project 1 I learned how to make a pull request which was my first contribution. I also learned more about GitHub in general. This is what it looks like when its approved and merged:
 <br>
-| Project 1 | Project 2 | Project 3 | Project 4 | Project 5 |
-| :--------------: | :---------------: | :---------------: | :---------------: | :---------------: |
-| This is what it looks like when its approved and merged | - | - | - | - |
-| ![Github Contribution](img/contri2.png) | ![FilenamesSorted](img/contri2.png) | ![Github Contribution](img/contri2.png) | ![FilenamesSorted](img/contri2.png) | ![FilenamesSorted](img/contri2.png) |
+![Github Contribution](img/contri2.png) 
+<br>
+In project 2 I learned how to make this website using MkDocs in Python
+![MkDocs](img/proj2.png) 
