@@ -61,4 +61,4 @@ After this I created a repository in GitHub where I added the Python code. I tha
 integrate workflows. First I linked my GitHub account to Railway, then I clicked on 'new' and than 'GitHub repo' and clicked on the repo with the fastAPI project. This deployed the repo into Railway. I then went to settings and generated a domain and called it gall-age-verify.up.railway.app. That is the link to go to the fastAPI app. Next I clicked on 'variables' and 'New variable' and named it 'PORT' and gave it the value 8000 which, in the Dockerfile I changed it from 8080 to 8000. This way Railway and the app are on the same port and now the app is hosting online.
 <br>
 Using Deepface I wrote this script where you can upload an image to and it show the age and the gender:
-![Age verify](faced.png)
+![Age verify](img/faced.png)
