@@ -43,6 +43,6 @@ mkdocs build
 ```
 To look inside the directory I used:
 ```yml
-$ ls site
+ls site
 ```
 And thats how i made this website using Python and MkDocs.
